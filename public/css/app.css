@@ -13857,9 +13857,8 @@ body.text-sm .control-sidebar {
 .navbar-cyan {
   background-color: #17a2b8;
 }
-
 .navbar-white {
-  background-color: #ffffff;
+  background-color: #4fc08d;
 }
 
 .navbar-gray {
@@ -35680,12 +35679,6 @@ input[type=button].btn-block {
 
 .nav-pills .nav-link {
   border-radius: 0.25rem;
-}
-
-.nav-pills .nav-link.active,
-.nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #3490dc;
 }
 
 .nav-fill > .nav-link,

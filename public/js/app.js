@@ -2313,6 +2313,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "New",
   data: function data() {
@@ -2326,8 +2328,8 @@ __webpack_require__.r(__webpack_exports__);
     addTag: function addTag() {
       var _this = this;
 
-      this.form.post("api/tag").then(function (response) {
-        console.log("tag is ok");
+      this.form.post("/api/tag").then(function (response) {
+        console.log("ok");
 
         _this.$router.push("/tag_index"); // Toast.fire({
         //   icon: 'success',
@@ -39540,44 +39542,52 @@ var render = function() {
         on: {
           click: function($event) {
             $event.preventDefault()
-            return _vm.addTag($event)
+            return _vm.addTag()
           }
         }
       },
       [
         _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "exampleInputName" } }, [
-              _vm._v("Name Tag")
-            ]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.tag_name,
-                  expression: "form.tag_name"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                id: "tagId",
-                name: "tag_name",
-                placeholder: "Enter name of tag ..."
-              },
-              domProps: { value: _vm.form.tag_name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", { attrs: { for: "exampleInputName" } }, [
+                _vm._v("Name Tag")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.tag_name,
+                    expression: "form.tag_name"
                   }
-                  _vm.$set(_vm.form, "tag_name", $event.target.value)
+                ],
+                staticClass: "form-control",
+                class: { "is-invalid": _vm.form.errors.has("tag_name") },
+                attrs: {
+                  type: "text",
+                  id: "tagId",
+                  name: "tag_name",
+                  placeholder: "Enter name of tag ..."
+                },
+                domProps: { value: _vm.form.tag_name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "tag_name", $event.target.value)
+                  }
                 }
-              }
-            })
-          ])
+              }),
+              _vm._v(" "),
+              _c("has-error", { attrs: { form: _vm.form, field: "tag_name" } })
+            ],
+            1
+          )
         ]),
         _vm._v(" "),
         _vm._m(1)
