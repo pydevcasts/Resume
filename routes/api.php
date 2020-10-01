@@ -22,3 +22,8 @@ Route::apiResources(
         'profile' => 'Backend\ProfileController'
     ]
 );
+Route::apiResources(
+	[
+		'tag' => 'Backend\TagController'
+	]
+);

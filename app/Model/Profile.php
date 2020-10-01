@@ -10,4 +10,8 @@ class Profile extends Model
     {
         return $this->hasMany('App\Model\Tag', 'profile_id');
     }
+    public function users()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

@@ -21,5 +21,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/profile', 'Backend\ProfileController@index')->name('profile');
-// Route::get('/{any}', 'HomeController@index')->where('any', '.*');
+Route::get('/{any}', 'HomeController@index')->where('any', '.*');
 // Route::get('{path}', 'HomeController@index')->where('path', '([A-z]+)?');

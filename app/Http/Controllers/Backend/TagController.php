@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Model\Tag;
 use Illuminate\Http\Request;
-use App\Model\Profile;
 
-
-class ProfileController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,14 +15,10 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::with('tags')->get();
+        $tags = Tag::all();
         return response()->json([
-            'profiles' => $profiles
+            'tags' => $tags,
         ], 200);
-        // $tags =Tag::with('profiles')->where('id','=','2')->get();
-        // return response()->json([
-        //     'tags'=>$tags
-        // ],200);
     }
 
     /**
@@ -44,7 +39,15 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'tag_name'=>'required|min:2|max:50'
+        ]);
+        $tag = new Tag();
+        $tag->tag_name = $request->tag_name;
+        $tag->save();
+        return response()->json([
+            'tag' => $tag,
+        ], 200);
     }
 
     /**
@@ -89,6 +92,7 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = Tag::find($id);
+        $tag->delete();
     }
 }

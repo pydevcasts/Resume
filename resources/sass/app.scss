@@ -13,3 +13,50 @@ $fa-font-path: "../webfonts";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+
+
+.router-link-exact-active {
+    background-color:#4fc08d;
+    color:#fff !important;
+}
+
+.blue{
+    color: $blue;
+}
+
+.indigo{
+    color: $indigo;
+}
+
+.purple{
+    color: $purple;
+}
+
+.pink{
+    color: $pink;
+}
+
+.red
+{
+    color: $red;
+}
+.orange{
+    color: $orange;
+}
+
+.yellow{
+    color: $yellow;
+}
+
+.green{
+    color: $green;
+}
+
+.teal{
+    color: $teal;
+}
+
+.cyan{
+    color: $cyan;
+}
