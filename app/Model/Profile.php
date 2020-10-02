@@ -8,7 +8,7 @@ class Profile extends Model
 {
     public function tags()
     {
-        return $this->hasMany('App\Model\Tag', 'profile_id');
+        return $this->hasMany('App\Model\Tag', 'id');
     }
     public function users()
     {

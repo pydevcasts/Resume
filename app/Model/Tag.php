@@ -8,6 +8,6 @@ class Tag extends Model
 {
     public function profiles()
     {
-        return $this->belongsTo('App\Model\Profile');
+        return $this->belongsTo('App\Model\Profile','profile_id');
     }
 }

@@ -20,10 +20,6 @@ class ProfileController extends Controller
         return response()->json([
             'profiles' => $profiles
         ], 200);
-        // $tags =Tag::with('profiles')->where('id','=','2')->get();
-        // return response()->json([
-        //     'tags'=>$tags
-        // ],200);
     }
 
     /**

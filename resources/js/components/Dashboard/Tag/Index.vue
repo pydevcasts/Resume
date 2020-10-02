@@ -39,9 +39,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr role="row" class="even">
-                            <td class="sorting_1" tabindex="0">Gecko</td>
-                            <td>Mozilla 1.0</td>
+                          <tr role="row" class="even" v-for="tag in getAllTag">
+                            <td class="sorting_1" tabindex="0">{{ tag.id}}</td>
+                            <td>{{ tag.tag_name }}</td>
                             <td><a href="">Edit</a> |
                             <a href="">Delete</a>
                             </td>
@@ -180,8 +180,14 @@
 
 <script>
 export default {
-  mounted() {
-    console.log("Component mounted.");
-  },
+  name:"List",
+    mounted() {
+        this.$store.dispatch("allTagFromDatabase");
+    },
+  computed:{
+    getAllTag(){
+       return this.$store.getters.getTagFormGetters;
+    }
+  }
 };
 </script>
