@@ -1,9 +1,9 @@
 <template>
   <div class="card card-primary mt-3">
     <div class="card-header">
-      <h3 class="card-title">Quick Example</h3>
+      <h3 class="card-title">Add Tag</h3>
     </div>
-    <form role="form" method="post" @click.prevent="addTag()">
+    <form role="form" method="post" @submit.prevent="addTag()">
       <div class="card-body">
         <div class="form-group">
           <label for="exampleInputName">Name Tag</label>
@@ -79,10 +79,10 @@ export default {
   methods: {
     addTag() {
       this.form
-        .post("/api/tag")
+        .post("api/tag")
         .then((response) => {
           console.log("ok");
-          this.$router.push("/tag_index");
+          this.$router.push("/index_tag");
           Toast.fire({
             icon: "success",
             title: "Tag is createde successfully",

@@ -22,8 +22,9 @@ Route::apiResources(
         'profile' => 'Backend\ProfileController'
     ]
 );
+Route::get('tag/edit/{id}', 'Backend\TagController@edit')->name('tag.edit');
 Route::apiResources(
-	[
-		'tag' => 'Backend\TagController'
-	]
-);
+    [
+        'tag' => 'Backend\TagController'
+        ]
+    );

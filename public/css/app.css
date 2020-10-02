@@ -13853,10 +13853,6 @@ body.text-sm .control-sidebar {
   background-color: #17a2b8;
 }
 
-.navbar-white {
-  background-color: #ffffff;
-}
-
 .navbar-gray {
   background-color: #6c757d;
 }
@@ -48239,6 +48235,16 @@ readers do not read off random characters that represent icons */
 .router-link-exact-active {
   background-color: #4fc08d;
   color: #fff !important;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #4fc08d;
+}
+
+.navbar-white {
+  background-color: #4fc08d;
 }
 
 .blue {

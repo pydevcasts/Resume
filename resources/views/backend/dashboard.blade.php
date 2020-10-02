@@ -112,7 +112,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/tag_index" class="nav-link">
+              <router-link to="/index_tag" class="nav-link">
                 <i class="nav-icon fas fa-tag orange"></i>
                 <p>
                 Tag

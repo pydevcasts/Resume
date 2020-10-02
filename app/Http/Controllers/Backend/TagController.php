@@ -69,7 +69,10 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::find($id);
+        return response()->json([
+            'tag' => $tag,
+        ], 200);
     }
 
     /**
@@ -81,7 +84,13 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'tag_name'=>'required|min:2|max:50'
+        ]);
+        $tag = Tag::find($id);
+        $tag->tag_name = $request->tag_name;
+        $tag->save();
+
     }
 
     /**

@@ -6,6 +6,7 @@ import Users from './components/Dashboard/Users.vue';
 import About from './components/Dashboard/About.vue';
 import TagIndex from './components/Dashboard/Tag/Index.vue';
 import AddTag from './components/Dashboard/Tag/New.vue';
+import EditTag from './components/Dashboard/Tag/Edit.vue';
 import Gallery from './components/Dashboard/Gallery.vue';
 
 
@@ -15,8 +16,9 @@ export const routes =[
     { path: '/profile', component: Profile },
     { path: '/users', component: Users },
     { path: '/about', component: About },
-    { path: '/tag_index', component: TagIndex },
-    { path: '/tag_create', component: AddTag },
+    { path: '/index_tag', component: TagIndex },
+    { path: '/create_tag', component: AddTag },
+    { path: '/edit_tag/:tagid', component: EditTag },
     { path: '/gallery', component: Gallery },
     { path: '/users', component: Users },
  ]

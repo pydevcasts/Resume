@@ -32,6 +32,8 @@ const Toast = Swal.mixin({
 })
 window.Toast = Toast
 
+//moment
+import { filter } from './filter'
 
 const router = new VueRouter({
     mode: 'history',

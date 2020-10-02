@@ -20,7 +20,15 @@ $fa-font-path: "../webfonts";
     background-color:#4fc08d;
     color:#fff !important;
 }
-
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color:#4fc08d;
+}
+.navbar-white {
+    background-color:#4fc08d;
+  }
+  
 .blue{
     color: $blue;
 }
