@@ -6,11 +6,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tag List</h3>
+                                <h3 class="card-title">About List</h3>
                                 <div class="cart-total">
                                     <div class="btn btn-primary float-right">
                                         <router-link
-                                            to="/create_tag"
+                                            to="/create_about"
                                             class="text-white"
                                             >New</router-link
                                         >
@@ -38,7 +38,8 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th>Id</th>
-                                                        <th>Tag Name</th>
+                                                        <th>title</th>
+                                                        <th>description</th>
                                                         <th>created</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -47,9 +48,9 @@
                                                     <tr
                                                         role="row"
                                                         class="even"
-                                                        v-for="(tag,
-                                                        index) in getAllTag"
-                                                        :key="tag.id"
+                                                        v-for="(about,
+                                                        index) in getAllAbout"
+                                                        :key="about.id"
                                                     >
                                                         <td
                                                             class="sorting_1"
@@ -58,18 +59,21 @@
                                                             {{ index + 1 }}
                                                         </td>
                                                         <td>
-                                                            {{ tag.tag_name }}
+                                                            {{ about.title }}
+                                                        </td>
+                                                        <td>
+                                                            {{ about.description }}
                                                         </td>
                                                         <td>
                                                             {{
-                                                                tag.created_at
+                                                                about.created_at
                                                                     | timeformat
                                                             }}
                                                         </td>
                                                         <td>
-                                                            <router-link :to="`edit_tag/${tag.id}`">Edit</router-link>
+                                                            <router-link :to="`edit_about/${about.id}`">Edit</router-link>
                                                             |
-                                                            <a href="" @click.prevent = "deleteTag(tag.id)"
+                                                            <a href="" @click.prevent = "deleteAbout(about.id)"
                                                                 >Delete</a
                                                             >
                                                         </td>
@@ -78,7 +82,8 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>Id</th>
-                                                        <th>Tag Name</th>
+                                                        <th>title</th>
+                                                        <th>description</th>
                                                         <th>created</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -223,23 +228,24 @@
 export default {
     name: "List",
     mounted() {
-        this.$store.dispatch("allTagFromDatabase");
+        this.$store.dispatch("allAboutFromDatabase");
     },
     computed: {
-        getAllTag() {
-            return this.$store.getters.getTagFormGetters;
+        getAllAbout(){
+            return this.$store.getters.getAboutFormGetters;
         }
+     
     },
     methods:{
-        deleteTag(id){
+        deleteAbout(id){
             console.log("its ok")
-            axios.delete(`api/tag/${id}`)
+            axios.delete(`api/about/${id}`)
            .then(() => {
-                    this.$store.dispatch("allTagFromDatabase");
+                    this.$store.dispatch("allAboutFromDatabase");
                     Toast.fire({
                         icon: "success",
                         type: "success",
-                        title: "Tag Deleted successfully"
+                        title: "About Deleted successfully"
                     });
                 })
                 .catch(() => {

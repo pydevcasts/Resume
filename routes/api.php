@@ -28,3 +28,9 @@ Route::apiResources(
         'tag' => 'Backend\TagController'
         ]
     );
+Route::get('about/edit/{id}', 'Backend\AboutController@edit')->name('about.edit');
+Route::apiResources(
+    [
+        'about'=>'Backend\AboutController'
+    ]
+    );

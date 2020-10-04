@@ -23,6 +23,7 @@
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-danger"><a href="/index_tag" :class="{underline: isUnderlined}">Back</a></button>
       </div>
     </form>
   </div>
@@ -33,8 +34,10 @@ export default {
   name: "Edit",
   data() {
     return {
+      isUnderlined: true,
       form: new Form({
         tag_name: "",
+
       }),
     };
   },
@@ -63,3 +66,8 @@ export default {
   },
 };
 </script>
+
+
+<style scoped>
+.underline { text-decoration: none; color:white }
+</style>

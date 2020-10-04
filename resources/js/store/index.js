@@ -5,9 +5,18 @@ const store = new Vuex.Store({
 
     state: {
         tag: [],
-        profile:[],
+        profile: [],
+        about: [],
     },
     actions: {
+        allAboutFromDatabase(context) {
+            axios.get('/api/about').then((response) => {
+                context.commit('abouts', response.data.abouts)
+            })
+            .catch(() => {
+                console.log("Error........")
+            })
+        },
         allTagFromDatabase(context) {
             axios.get("api/tag")
                 .then((response) => {
@@ -30,6 +39,10 @@ const store = new Vuex.Store({
         },
     },
     mutations: {
+        abouts(state, data) {
+            return state.about = data
+        },
+
         tags(state, data) {
             return state.tag = data
         },
@@ -38,6 +51,9 @@ const store = new Vuex.Store({
         },
     },
     getters: {
+        getAboutFormGetters(state) {
+            return state.about
+        },
         getTagFormGetters(state) { //take parameter state
             return state.tag
         },

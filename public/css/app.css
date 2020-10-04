@@ -13853,6 +13853,10 @@ body.text-sm .control-sidebar {
   background-color: #17a2b8;
 }
 
+.navbar-white {
+  background-color: #ffffff;
+}
+
 .navbar-gray {
   background-color: #6c757d;
 }
@@ -48245,6 +48249,11 @@ readers do not read off random characters that represent icons */
 
 .navbar-white {
   background-color: #4fc08d;
+}
+
+.card-primary:not(.card-outline) > .card-header {
+  background-color: #4fc08d;
+  color: #fff;
 }
 
 .blue {
