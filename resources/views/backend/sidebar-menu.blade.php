@@ -29,9 +29,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fas fa-circle nav-icon yellow"></i>
-                    <p>Inactive Page</p>
+                  <router-link to="/index_service" class="nav-link">
+                    <i class="fa fa-id-card nav-icon yellow"></i>
+                    <p>Service</p>
                   </a>
                 </li>
               </ul>
@@ -62,7 +62,7 @@
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/gallery" class="nav-link">
+              <router-link to="/index_gallery" class="nav-link">
                 <i class="nav-icon fas fa-file cyan"></i>
                 <p>
                 Gallery

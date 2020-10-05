@@ -7,8 +7,25 @@ const store = new Vuex.Store({
         tag: [],
         profile: [],
         about: [],
+        gallery:[],
+        service:[],
     },
     actions: {
+        allServiceFromDatabase(context){
+            axios.get('/api/service').then((response)=>{
+                console.log(response);
+               context.commit('services',response.data.services)
+            }).catch((error)=>{
+                console.log(error)
+            })
+        },
+        allGalleryFromDatabase(context){
+            axios.get('/api/gallery').then((response)=>{
+                context.commit('galleries',response.data.galleries)
+            }).catch((error)=>{
+                console.log(error)
+            })
+        },
         allAboutFromDatabase(context) {
             axios.get('/api/about').then((response) => {
                 context.commit('abouts', response.data.abouts)
@@ -39,6 +56,12 @@ const store = new Vuex.Store({
         },
     },
     mutations: {
+        services(state,data){
+            return state.service = data
+        },
+        galleries(state, data){
+            return state.gallery = data
+        },
         abouts(state, data) {
             return state.about = data
         },
@@ -51,6 +74,12 @@ const store = new Vuex.Store({
         },
     },
     getters: {
+        getServiceFromGetters(state){
+            return state.service
+        },
+        getGalleryFormGetters(state){
+            return state.gallery
+        },
         getAboutFormGetters(state) {
             return state.about
         },

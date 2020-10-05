@@ -34,3 +34,15 @@ Route::apiResources(
         'about'=>'Backend\AboutController'
     ]
     );
+Route::get('gallery/edit/{id}', 'Backend\GalleryController@edit')->name('gallery.edit');
+Route::apiResources(
+    [
+        'gallery'=>'Backend\GalleryController'
+    ]
+    );
+Route::get('service/edit/{id}', 'Backend\ServiceController@edit')->name('service.edit');
+Route::apiResources(
+    [
+        'service'=>'Backend\ServiceController'
+    ]
+    );
