@@ -9,6 +9,7 @@ const store = new Vuex.Store({
         about: [],
         gallery:[],
         service:[],
+
     },
     actions: {
         allServiceFromDatabase(context){

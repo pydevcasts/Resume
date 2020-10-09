@@ -11,6 +11,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
   <title>Dashboard |  {{Auth::user()->name}}</title>
+  <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
 </head>
 
 <body class="hold-transition sidebar-mini">

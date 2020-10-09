@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Gallery;
 use Illuminate\Support\Facades\Storage;
 
+
 class GalleryController extends Controller
 {
     /**
@@ -46,22 +47,35 @@ class GalleryController extends Controller
             'summary'=>'required|min:2|max:100',
             'photo'=>'required',
             ]);
-        if ($request->hasFile('photo')) {
-            $image =$request->file('photo');
-            $filename = time().$image->getClientOriginalName();
-            Storage::disk('local')->putFileAs('gallery/', $image, $filename);
+            
+            // $upload_path = public_path('gallery');
+            // $filename = $request->file('photo')->getClientOriginalName();
+            // $generated_new_name = time() . '.' . $request->file('photo')->getClientOriginalExtension();
+            // $request->file('photo')->move($upload_path, $generated_new_name);
+      
+            if ($request->hasFile('photo')) {
+                $image =$request->file('photo');
+                // $filename = $request->file('photo')->getClientOriginalName();
+                $generated_new_name = time() . '.' . $image->getClientOriginalExtension();
+                Storage::disk('local')->putFileAs('gallery/', $image, $generated_new_name);
+                $gallery = New Gallery();
+                $gallery->title = $request->title;
+                $gallery->summary = $request->summary;
+                $gallery->photo = $generated_new_name;
+                $gallery->save();
+                return response()->json(['success'=>'Uploaded Successfully.']);
         } else {
-            return 'No Uploded';
+            return response()->json(['error'=>'File not exist!']);
         }
-        $gallery = New Gallery();
-        $gallery->title = $request->title;
-        $gallery->summary = $request->summary;
-        $gallery->photo = $filename;
-        $gallery->save();
-        return response()->json([
-            'message'=>'Uploaded Successfully',
-        ]);
     }
+     
+        // $image =$request->file('photo');
+        // $filename = time().$image->getClientOriginalName();
+        // $img = Image::make($request->photo)->resize(200, 200);
+        // $upload_path = public_path("/img/gallery/");
+        // $img->save($upload_path.$filename);
+      
+    
 
   
     /**
@@ -117,6 +131,8 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        $gallery = Gallery::find($id)->delete();
+        $gallery = Gallery::find($id);
+        Storage::disk('local')->delete('gallery/'.$gallery['photo']);
+        $gallery->delete();
     }
 }

@@ -3,7 +3,7 @@
     <div class="card-header">
       <h3 class="card-title">Add Gallery</h3>
     </div>
-    <form role="form" method="POST" enctype="multipart/form-data" @submit="addnewGallery">
+    <form role="form" method="POST" enctype="multipart/form-data" @submit.prevent="addnewGallery()">
       <div class="card-body">
         <div class="form-group">
           <label for="exampleInputName">Name Gallery</label>
@@ -14,9 +14,9 @@
             name="title"
             v-model="title"
             placeholder="Enter title ..."
-       
+           
           />
-         
+          <!-- <has-error :form="form" field="title"></has-error> -->
         </div>
         <div class="form-group">
           <label>Summary</label>
@@ -27,21 +27,20 @@
             name="title"
             v-model="summary"
             placeholder="Enter summary ..."
-        
+           
           />
-     
+          <!-- <has-error :form="form" field="summary"></has-error> -->
         </div>
 
         <div class="form-group">
           <input
-            @change="changePhoto"
+            @change="changePhoto($event)"
             name="photo"
             type="file"
-          
-          
+         
           />
           <img :src="photo" alt width="80" height="80" />
-     
+          <!-- <has-error :form="form" field="photo"></has-error> -->
         </div>
       </div>
       <div class="card-footer">
@@ -53,49 +52,31 @@
 
 <script>
 export default {
-  name: "New",
+  // name: "New",
   data() {
     return {
-    
+      // form: new Form({
         title: "",
         summary: "",
         photo: "",
-
+      // }),
     };
   },
 
   methods: {
     changePhoto(event) {
-      console.log(event.target.files[0]);
-    this.photo = event.target.files[0];
-   
-      // if (file.size > 1048576) {
-      //   Toast.fire({
-      //     type: "error",
-      //     title: "Oops...",
-      //     text: "Something went wrong!",
-      //     footer: "<a href>Why do I have this issue?</a>",
-      //   });
-      // } else {
-      //   let reader = new FileReader();
-      //   reader.onload = (event) => {
-      //     this.form.photo = event.target.result;
-      //     console.log(event.target.result);
-      //   };
-      //   reader.readAsDataURL(file);
-      // }
+     let file = event.target.files[0];
+    
     },
-    addnewGallery(event) {
-                      event.preventDefault();
-
-                let formData = new FormData();
+    addnewGallery() {
+       let formData = new FormData();
        const config = {
         headers: {
           "content-type": "multipart/form-data",
         },
       };
 
-formData.append('photo', this.photo);
+formData.append('photo', this.changePhoto.file);
 formData.append('title', this.title);
 formData.append('summary', this.summary);
 axios({
@@ -119,21 +100,27 @@ axios({
         .catch((error) => {
           console.log(error);
         });
-            }
-      // this.form
-      //   .post("/api/gallery")
-      //   .then((response) => {
-      //     console.log(response)
-      //     this.$router.push("/index_gallery");
-      //     Toast.fire({
-      //       icon: "success",
-      //       title: "Gallery is createde successfully",
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-    
+  //     const config = {
+  //       headers: {
+  //         "content-type": "multipart/form-data",
+       
+  //       },
+  //     };
+   
+  //     this.form
+  //       .post("/api/gallery")
+  //       .then((response) => {
+  //         console.log(response)
+  //         this.$router.push("/index_gallery");
+  //         Toast.fire({
+  //           icon: "success",
+  //           title: "Gallery is createde successfully",
+  //         });
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+    },
   },
 };
 

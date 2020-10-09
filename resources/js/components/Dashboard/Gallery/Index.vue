@@ -64,6 +64,7 @@
                                                 :src="ourImage(gallery.photo)"
                                                 alt=""                                    
                                                 class="center"
+                                                :class="{imgstyle: isWidth}"
                                             />
                             </td>
                             <td>
@@ -217,6 +218,11 @@
 <script>
 export default {
   name: "List",
+  data(){
+    return{
+isWidth:true
+    }
+  },
   mounted() {
     this.$store.dispatch("allGalleryFromDatabase");
   },
@@ -227,7 +233,7 @@ export default {
   },
   methods: {
       ourImage(img) {
-            return "./img/uploadimage/" + img;
+            return `http://127.0.0.1:8000/storage/gallery/${img}`;
         },
     deleteGallery(id) {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -276,3 +282,8 @@ export default {
   },
 };
 </script>
+<style  scoped>
+.imgstyle{
+  width:80px;
+}
+</style>
