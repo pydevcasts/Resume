@@ -22,9 +22,7 @@
         </div>
         <div class="form-group">
           <label>Description</label>
-     <textarea 
-   
-            
+          <textarea
             class="form-control"
             id="profileId"
             name="description"
@@ -33,10 +31,9 @@
             :class="{
               'is-invalid': form.errors.has('description'),
             }"
-             cols="30" rows="10"
-          >
-  
-     </textarea>
+            cols="30"
+            rows="10"
+          ></textarea>
           <has-error :form="form" field="description"></has-error>
         </div>
 
@@ -51,7 +48,7 @@
           />
           <has-error :form="form" field="photo"></has-error>
         </div>
-            <div class="form-group">
+        <div class="form-group">
           <label>Phone</label>
           <input
             type="text"
@@ -66,7 +63,7 @@
           />
           <has-error :form="form" field="phone"></has-error>
         </div>
-            <div class="form-group">
+        <div class="form-group">
           <label>Email</label>
           <input
             type="text"
@@ -81,7 +78,7 @@
           />
           <has-error :form="form" field="email"></has-error>
         </div>
-            <div class="form-group">
+        <div class="form-group">
           <label>Address</label>
           <input
             type="text"
@@ -96,7 +93,7 @@
           />
           <has-error :form="form" field="address"></has-error>
         </div>
-            <div class="form-group">
+        <div class="form-group">
           <label>Social</label>
           <input
             type="text"
@@ -111,7 +108,7 @@
           />
           <has-error :form="form" field="social_media_1"></has-error>
         </div>
-            <div class="form-group">
+        <div class="form-group">
           <label>Social</label>
           <input
             type="text"
@@ -126,7 +123,7 @@
           />
           <has-error :form="form" field="social_media_2"></has-error>
         </div>
-            <div class="form-group">
+        <div class="form-group">
           <label>Social</label>
           <input
             type="text"
@@ -141,44 +138,21 @@
           />
           <has-error :form="form" field="social_media_3"></has-error>
         </div>
-           <div class="form-group">
-                                    <label>Select</label>
-                                        <multiselect
 
-                                          v-model="selected"
-
-                                          :multiple="true"
-
-                                          :options="options">
-
-                                        </multiselect>
-                                    <!-- <select   v-model="form.tags"
-                                        class="form-control"
-                                        :class="{
-                                            'is-invalid': form.errors.has(
-                                                'tags'
-                                            )
-                                        }"
-                                      
-                                        
-                                    >
-                                        <option disabled value=""
-                                            >Select One</option
-                                        >
-                                        <option
-                                            :value="tag.id"
-                                            v-for="(tag,
-                                            index) in getAllTag"
-                                            :key="index"
-                                            >
-                                            {{ tag.tag_name }}</option
-                                        >
-                                    </select> -->
-                                    <!-- <has-error
-                                        :form="form"
-                                        field="tags"
-                                    ></has-error> -->
-                                </div>
+        <div>
+          <label class="typo__label">Tagging</label>
+          <multiselect
+            v-model="form.tags"
+            tag-placeholder="Add this as new tag"
+            placeholder="Search or add a tag"
+            label="name"
+            track-by="code"
+            :options="options"
+            :multiple="true"
+            :taggable="true"
+            @tag="addTag"
+          ></multiselect>
+        </div>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -188,46 +162,73 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
+import Multiselect from "vue-multiselect";
 export default {
   components: { Multiselect },
   name: "New",
   data() {
     return {
-      selected: null,
-       options: [],
+      value: [],
+      options: [],
+
       form: new Form({
         title: "",
         description: "",
         photo: "",
-        email:"",
-        phone:"",
-        address:"",
-        social_media_1:"",
-        social_media_2:"",
-        social_media_3:"",
-        tags:"",
+        email: "",
+        phone: "",
+        address: "",
+        social_media_1: "",
+        social_media_2: "",
+        social_media_3: "",
+        tags: "",
       }),
     };
   },
- mounted() {
-        this.$store.dispatch("allTagFromDatabase");
+  mounted() {
+    this.$store.dispatch("allTagFromDatabase");
+    this.addtagtest();
+  },
+  computed: {
+    getAllTag(newTag) {
+      return this.options.push(this.$store.getters.getTagFormGetters);
+      return this.value.push(this.$store.getters.getTagFormGetters);
     },
-    computed: {
-
-        getAllTag() {
-            
-            return this.$store.getters.getTagFormGetters;
-        },
-
-      tagsTest(){
-      console.log('are')
-      alert('fvfvf')
-        return tags();
-      }
-// هستی؟؟؟
-    },
+  },
   methods: {
+    addTag(newTag) {
+      const tag = {
+        name: newTag,
+        code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
+      };
+      this.options.push(tag);
+      this.value.push(tag);
+    },
+    addtagtest() {
+      let vm = this;
+      axios
+        .get("tag/")
+        .then((res) => {
+          // console.log( 'in res hast',res.data.tags)
+          let resTags = res.data.tags;
+
+          for (let i = 0; i < resTags.length; i++) {
+            let obj = {};
+            obj["code"] = resTags[i].id;
+            obj["name"] = resTags[i].tag_name;
+            vm.options.push(obj);
+            console.log(25);
+          }
+
+          console.log("in options hast", vm.options);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // tag_name = this.form.tags,
+    },
+
     changePhoto(event) {
       console.log(event.target.files[0]);
       this.form.photo = event.target.files[0];
@@ -250,14 +251,13 @@ export default {
       formData.append("social_media_1", this.form.social_media_1);
       formData.append("social_media_2", this.form.social_media_2);
       formData.append("social_media_3", this.form.social_media_3);
-       formData.append("tags", this.form.tags);
-      // formData.append("tags", this.form.tags);
+      formData.append("tags", this.form.tags);
 
       axios
         .post("/profile", formData, config)
         .then((response) => {
           console.log(response);
-          // this.$router.push("/index_profile");
+          this.$router.push("/index_profile");
           Toast.fire({
             icon: "success",
             title: "Gallery is createde successfully",
@@ -267,25 +267,7 @@ export default {
           console.log(error);
         });
     },
-
-    tags(){
-      alert('ok')
-      let vm = this;
-         axios
-        .get("/allTags", config)
-        .then((res) => {
-          console.log(res.response.data);
-    
-      vm.options = res.response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    
-  
-  }
-  // ی جا ی \رانتر اشتباه شده
+  },
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css">

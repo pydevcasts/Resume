@@ -5,6 +5,8 @@ const store = new Vuex.Store({
 
     state: {
         tag: [],
+        value:[],
+        options:[],
         profile: [],
         about: [],
         gallery:[],

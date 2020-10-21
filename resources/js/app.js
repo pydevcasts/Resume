@@ -38,6 +38,7 @@ window.Toast = Toast
 //moment
 import { filter } from './filter'
 import Axios from 'axios';
+import { multiselectMixin } from 'vue-multiselect';
 
 const router = new VueRouter({
     mode: 'history',
@@ -48,4 +49,5 @@ const app = new Vue({
   el: '#app',
   router,
   store,
+
 });

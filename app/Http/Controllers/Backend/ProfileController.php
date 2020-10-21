@@ -17,7 +17,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::with('tags')->get();
+        $profiles = Profile::all();
+
         return response()->json([
             'profiles' => $profiles
         ], 200);
@@ -42,8 +43,6 @@ class ProfileController extends Controller
     public function store(Request $r)
     {
 
-
-// todo : validation
         $this->validate($r,[
             'photo'=>'required',
             'tags'=>'required|exists:tags,id',
@@ -58,14 +57,13 @@ class ProfileController extends Controller
             ]);
 
             if($r->hasFile('photo')){
-                $image = $r->file('photo');
+            $image = $r->file('photo');
             $filename =time() . '.' . $image->getClientOriginalExtension();
             Storage::disk('local')->putFileAs('profile/', $image, $filename);
 
         }
 
             $profile = New Profile();
-
             $profile->photo = $filename;
             $profile->tag_id = $r->tags;
             $profile->title = $r->title;
@@ -76,14 +74,8 @@ class ProfileController extends Controller
             $profile->phone = $r->phone;
             $profile->email = $r->email;
             $profile->address = $r->address;
-
-          
             $profile->save();
-
             return response()->json(['success'=>'Uploaded Successfully.']);
-
-
-        //وقتی ولیدیشن رو درست بزاری دیگ احتیاجی به else نیست
  
     }
 
@@ -174,11 +166,11 @@ class ProfileController extends Controller
 
 
 
-public function allTags(){
+// public function allTags(){
 
-return ['tags' => Tag::all()];
+// return ['tags' => Tag::all()];
 
-}
+// }
 
 
 }

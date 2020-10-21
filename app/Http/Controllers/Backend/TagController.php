@@ -45,12 +45,11 @@ class TagController extends Controller
         ]);
         $tag = new Tag();
         $tag->tag_name = $request->tag_name;
-        // $tag->profile_id = $request->profile_id;
         $tag->save();
         return response()->json([
             'message'=>'Tag Created Successfully .'
         ],200);
-
+// تلگرام
     }
 
     /**

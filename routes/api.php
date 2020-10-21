@@ -18,7 +18,7 @@ Route::apiResources(
         
 );
 
-Route::get('allTags' , 'Backend\ProfileController@allTags');
+// Route::get('allTags' , 'Backend\ProfileController@allTags');
 
 Route::get('tag/edit/{id}', 'Backend\TagController@edit')->name('tag.edit');
 Route::apiResources(
@@ -26,25 +26,28 @@ Route::apiResources(
         'tag' => 'Backend\TagController'
         ]
     );
-Route::get('about/edit/{id}', 'Backend\AboutController@edit')->name('about.edit');
 
+Route::get('about/edit/{id}', 'Backend\AboutController@edit')->name('about.edit');
 Route::apiResources(
     [
         'about'=>'Backend\AboutController'
     ]
     );
+
 Route::get('gallery/edit/{id}', 'Backend\GalleryController@edit')->name('gallery.edit');
 Route::apiResources(
     [
         'gallery'=>'Backend\GalleryController'
     ]
     );
+
 Route::get('service/edit/{id}', 'Backend\ServiceController@edit')->name('service.edit');
 Route::apiResources(
     [
         'service'=>'Backend\ServiceController'
     ]
     );
+    
 Route::apiResources(
     [
         'contact'=>'Frontend\ContactController'

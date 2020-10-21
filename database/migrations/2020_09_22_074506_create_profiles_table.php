@@ -25,6 +25,7 @@ class CreateProfilesTable extends Migration
             $table->string('social_media_2')->nullable();
             $table->string('social_media_3')->nullable();
             $table->integer('user_id')->unsigned();
+            $table->integer('tag_id')->unsigned();
             $table->timestamps();
         });
     }

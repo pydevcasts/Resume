@@ -20,34 +20,7 @@
           />
           <has-error :form="form" field="tag_name"></has-error>
         </div>
-              <div class="form-group">
-                                    <label>Select</label>
-                                    <select
-                                        class="form-control"
-                                        :class="{
-                                            'is-invalid': form.errors.has(
-                                                'profile_id'
-                                            )
-                                        }"
-                                        v-model="form.profile_id"
-                                    >
-                                        <option disabled value=""
-                                            >Select One</option
-                                        >
-                                        <option
-                                            :value="profile.id"
-                                            v-for="(profile,
-                                            index) in getAllProfile"
-                                            :key="index"
-                                            >
-                                            {{ profile.title }}</option
-                                        >
-                                    </select>
-                                    <has-error
-                                        :form="form"
-                                        field="profile_id"
-                                    ></has-error>
-                                </div>
+          
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -64,18 +37,10 @@ export default {
     return {
       form: new Form({
         tag_name: "",
-        profile_id: "",
       }),
     };
   },
-      mounted() {
-        this.$store.dispatch("allProfileFromDatabase");
-    },
-    computed: {
-        getAllProfile() {
-            return this.$store.getters.getProfileFormGetters;
-        }
-    },
+   
   methods: {
     addTag() {
       this.form
