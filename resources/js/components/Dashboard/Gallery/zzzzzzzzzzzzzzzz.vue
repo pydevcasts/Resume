@@ -1,12 +1,12 @@
 <template>
   <div class="card card-primary mt-3">
     <div class="card-header">
-      <h3 class="card-title">Add Gallery</h3>
+      <h3 class="card-title">Edit Gallery</h3>
     </div>
-    <form role="form" method="POST" enctype="multipart/form-data" @submit.prevent="addnewGallery()">
+    <form role="form" method="post" @submit="updateGallery" enctype="multipart/form-data" >
       <div class="card-body">
         <div class="form-group">
-          <label for="exampleInputName">Name Gallery</label>
+          <label for="exampleInputName">Edit Gallery</label>
           <input
             type="text"
             class="form-control"
@@ -14,7 +14,6 @@
             name="title"
             v-model="title"
             placeholder="Enter title ..."
-           
           />
           <!-- <has-error :form="form" field="title"></has-error> -->
         </div>
@@ -27,24 +26,22 @@
             name="title"
             v-model="summary"
             placeholder="Enter summary ..."
-           
           />
           <!-- <has-error :form="form" field="summary"></has-error> -->
         </div>
 
         <div class="form-group">
-          <input
-            @change="changePhoto($event)"
-            name="photo"
-            type="file"
-         
-          />
-          <img :src="photo" alt width="80" height="80" />
+          <label for="exampleInputFile">File input</label>
+          <input type="file" @change="changePhoto" id="galleryId" name="photo" />
           <!-- <has-error :form="form" field="photo"></has-error> -->
+          <label class="custom-file-label" for="exampleInputFile">Choose file</label>
         </div>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-danger">
+          <a href="/index_gallery" :style="{ 'text-decoration': 'none', color: 'white' }">Back</a>
+        </button>
       </div>
     </form>
   </div>
@@ -52,45 +49,56 @@
 
 <script>
 export default {
-  // name: "New",
+  name: "Edit",
   data() {
     return {
       // form: new Form({
-        title: "",
-        summary: "",
-        photo: "",
+      title: "",
+      summary: "",
       // }),
+      photo: "",
     };
   },
-
+  mounted() {
+    axios
+      .get(`/api/gallery/edit/${this.$route.params.galleryid}`)
+      .then((response) => {
+        this.title = response.data.gallery.title;
+        this.summary = response.data.gallery.summary;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
   methods: {
     changePhoto(event) {
-     let file = event.target.files[0];
-    
+      console.log(event.target.files[0]);
+      this.photo = event.target.files[0];
     },
-    addnewGallery() {
-       let formData = new FormData();
-       const config = {
+    updateGallery(event) {
+      event.preventDefault();
+
+      let formData = new FormData();
+      const config = {
         headers: {
           "content-type": "multipart/form-data",
         },
       };
 
-formData.append('photo', this.changePhoto.file);
-formData.append('title', this.title);
-formData.append('summary', this.summary);
-axios({
-    method: 'POST',
-    url: 'api/gallery',
-    data: formData,
-    headers: {
-        'Content-Type': 'multipart/form-data'
-    }
-    })
-      // this.form
-      //   .post("/api/gallery", config)
+      formData.append("photo", this.photo);
+      formData.append("title", this.title);
+      formData.append("summary", this.summary);
+      axios({
+        method: "PUT",
+        url: `/api/gallery/${this.$route.params.galleryid}`,
+        data: formData,
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
         .then((response) => {
-          console.log(response)
+          console.log(response);
+        
           this.$router.push("/index_gallery");
           Toast.fire({
             icon: "success",
@@ -100,29 +108,7 @@ axios({
         .catch((error) => {
           console.log(error);
         });
-  //     const config = {
-  //       headers: {
-  //         "content-type": "multipart/form-data",
-       
-  //       },
-  //     };
-   
-  //     this.form
-  //       .post("/api/gallery")
-  //       .then((response) => {
-  //         console.log(response)
-  //         this.$router.push("/index_gallery");
-  //         Toast.fire({
-  //           icon: "success",
-  //           title: "Gallery is createde successfully",
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
     },
   },
 };
-
-
 </script>

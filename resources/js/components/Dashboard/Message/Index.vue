@@ -6,11 +6,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Tag List</h3>
+                                <h3 class="card-title">Contact List</h3>
                                 <div class="cart-total">
                                     <div class="btn btn-primary float-right">
                                         <router-link
-                                            to="/create_tag"
+                                            to="/create_contact"
                                             class="text-white"
                                             >New</router-link
                                         >
@@ -38,8 +38,9 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th>Id</th>
-                                                        <th>Tag Name</th>
-                                                        <th>created</th>
+                                                        <th>Name</th>
+                                                        <th>Message</th>
+                                                        <th>Created</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -47,9 +48,9 @@
                                                     <tr
                                                         role="row"
                                                         class="even"
-                                                        v-for="(tag,
-                                                        index) in getAllTag"
-                                                        :key="tag.id"
+                                                        v-for="(contact,
+                                                        index) in getAllContact"
+                                                        :key="contact.id"
                                                     >
                                                         <td
                                                             class="sorting_1"
@@ -58,18 +59,19 @@
                                                             {{ index + 1 }}
                                                         </td>
                                                         <td>
-                                                            {{ tag.tag_name }}
+                                                            {{ contact.name }}
+                                                        </td>
+                                                        <td>
+                                                            {{ contact.description }}
                                                         </td>
                                                         <td>
                                                             {{
-                                                                tag.created_at
+                                                                contact.created_at
                                                                     | timeformat
                                                             }}
-                                                        </td>
-                                                        <td>
-                                                            <router-link :to="`edit_tag/${tag.id}`">Edit</router-link>
-                                                            |
-                                                            <a href="" @click.prevent = "deleteTag(tag.id)"
+                                                        </td> 
+                                                     <td>
+                                                            <a href="" @click.prevent = "deleteContact(contact.id)"
                                                                 >Delete</a
                                                             >
                                                         </td>
@@ -78,8 +80,9 @@
                                                 <tfoot>
                                                     <tr>
                                                         <th>Id</th>
-                                                        <th>Tag Name</th>
-                                                        <th>created</th>
+                                                        <th>Name</th>
+                                                        <th>Message</th>
+                                                        <th>Created</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </tfoot>
@@ -223,23 +226,23 @@
 export default {
     name: "List",
     mounted() {
-        this.$store.dispatch("allTagFromDatabase");
+        this.$store.dispatch("allContactFromDatabase");
     },
     computed: {
-        getAllTag() {
-            return this.$store.getters.getTagFormGetters;
+        getAllContact(){
+            return this.$store.getters.getContactFromGetters;
         }
+     
     },
     methods:{
-        deleteTag(id){
-            console.log("its ok")
-            axios.delete(`tag/${id}`)
+        deleteContact(id){
+            axios.delete(`contact/${id}`)
            .then(() => {
-                    this.$store.dispatch("allTagFromDatabase");
+                    this.$store.dispatch("allContactFromDatabase");
                     Toast.fire({
                         icon: "success",
                         type: "success",
-                        title: "Tag Deleted successfully"
+                        title: "Massage Deleted successfully"
                     });
                 })
                 .catch(() => {

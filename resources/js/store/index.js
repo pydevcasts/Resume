@@ -9,11 +9,20 @@ const store = new Vuex.Store({
         about: [],
         gallery:[],
         service:[],
+        contact:[],
 
     },
     actions: {
+        allContactFromDatabase(context){
+            axios.get('/contact').then((response)=>{
+                console.log(response);
+               context.commit('contacts',response.data.contacts)
+            }).catch((error)=>{
+                console.log(error)
+            })
+        },
         allServiceFromDatabase(context){
-            axios.get('/api/service').then((response)=>{
+            axios.get('/service').then((response)=>{
                 console.log(response);
                context.commit('services',response.data.services)
             }).catch((error)=>{
@@ -21,14 +30,14 @@ const store = new Vuex.Store({
             })
         },
         allGalleryFromDatabase(context){
-            axios.get('/api/gallery').then((response)=>{
+            axios.get('/gallery').then((response)=>{
                 context.commit('galleries',response.data.galleries)
             }).catch((error)=>{
                 console.log(error)
             })
         },
         allAboutFromDatabase(context) {
-            axios.get('/api/about').then((response) => {
+            axios.get('/about').then((response) => {
                 context.commit('abouts', response.data.abouts)
             })
             .catch(() => {
@@ -36,7 +45,7 @@ const store = new Vuex.Store({
             })
         },
         allTagFromDatabase(context) {
-            axios.get("api/tag")
+            axios.get("tag")
                 .then((response) => {
                     console.log(response.data.tags)
                     context.commit("tags", response.data.tags) //tags will be run from mutation
@@ -46,7 +55,7 @@ const store = new Vuex.Store({
                 })
         },
         allProfileFromDatabase(context) {
-            axios.get("api/profile")
+            axios.get("profile")
                 .then((response) => {
                     console.log(response.data.profiles)
                     context.commit("profiles", response.data.profiles) //categories will be run from mutation
@@ -57,6 +66,9 @@ const store = new Vuex.Store({
         },
     },
     mutations: {
+        contacts(state,data){
+            return state.contact = data
+        },
         services(state,data){
             return state.service = data
         },
@@ -75,6 +87,9 @@ const store = new Vuex.Store({
         },
     },
     getters: {
+        getContactFromGetters(state){
+            return state.contact
+        },
         getServiceFromGetters(state){
             return state.service
         },

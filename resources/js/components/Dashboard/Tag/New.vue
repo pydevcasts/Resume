@@ -79,7 +79,7 @@ export default {
   methods: {
     addTag() {
       this.form
-        .post("api/tag")
+        .post("/tag")
         .then((response) => {
           console.log("ok");
           this.$router.push("/index_tag");

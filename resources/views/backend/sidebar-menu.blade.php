@@ -37,7 +37,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <router-link to="/profile" class="nav-link">
+              <router-link to="/index_profile" class="nav-link">
                 <i class="nav-icon fas fa-user-alt indigo"></i>
                 <p>
                 Profile
@@ -66,6 +66,14 @@
                 <i class="nav-icon fas fa-file cyan"></i>
                 <p>
                 Gallery
+                </p>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/index_contact" class="nav-link">
+                <i class="nav-icon fas fa-comment-alt orange"></i>
+                <p>
+                Contact
                 </p>
               </router-link>
             </li>

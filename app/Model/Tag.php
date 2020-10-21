@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    public function profiles()
+    public $fillable =['tag_name'];
+    public function profile()
     {
-        return $this->belongsTo('App\Model\Profile','profile_id');
+        return $this->belongsTo('App\Model\Profile' , 'tag_id' , 'id');
     }
 }

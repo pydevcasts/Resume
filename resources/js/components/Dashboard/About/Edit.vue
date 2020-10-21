@@ -1,21 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <template>
   <div class="card card-primary mt-3">
     <div class="card-header">

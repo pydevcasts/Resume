@@ -47,19 +47,14 @@ class GalleryController extends Controller
             'summary'=>'required|min:2|max:100',
             'photo'=>'required',
             ]);
-            
-            // $upload_path = public_path('gallery');
-            // $filename = $request->file('photo')->getClientOriginalName();
-            // $generated_new_name = time() . '.' . $request->file('photo')->getClientOriginalExtension();
-            // $request->file('photo')->move($upload_path, $generated_new_name);
-      
+
             if ($request->hasFile('photo')) {
                 $image =$request->file('photo');
-                // $filename = $request->file('photo')->getClientOriginalName();
                 $generated_new_name = time() . '.' . $image->getClientOriginalExtension();
                 Storage::disk('local')->putFileAs('gallery/', $image, $generated_new_name);
                 $gallery = New Gallery();
                 $gallery->title = $request->title;
+            
                 $gallery->summary = $request->summary;
                 $gallery->photo = $generated_new_name;
                 $gallery->save();
@@ -69,14 +64,6 @@ class GalleryController extends Controller
         }
     }
      
-        // $image =$request->file('photo');
-        // $filename = time().$image->getClientOriginalName();
-        // $img = Image::make($request->photo)->resize(200, 200);
-        // $upload_path = public_path("/img/gallery/");
-        // $img->save($upload_path.$filename);
-      
-    
-
   
     /**
      * Display the specified resource.
@@ -111,16 +98,30 @@ class GalleryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        $this->validate($request,[
+    {  
+    
+        $this->validate($request, [
             'title'=>'required|min:2|max:50',
             'summary'=>'required|min:2|max:100',
-            // 'photo'=>'required
-        ]);
-        $gallery = Gallery::find($id);
-        $gallery->title = $request->title;
-        $gallery->summary = $request->summary;
-        $gallery->save();
+            'photo' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
+          
+            ]);
+            
+            
+            if ($request->hasFile('photo')) {
+                $image =$request->file('photo');
+                $generated_new_name = time() . '.' . $image->getClientOriginalExtension();
+                Storage::disk('local')->putFileAs('gallery/', $image, $generated_new_name);
+                $gallery = Gallery::findOrFail($id);
+                $gallery->title = $request->title;
+                $gallery->summary = $request->summary;
+                Storage::disk('local')->delete('gallery/'.$gallery['photo']);
+                $gallery->photo = $generated_new_name;
+                $gallery->save();
+                return response()->json(['success'=>'Uploaded Successfully.']);
+        } else {
+            return response()->json(['error'=>'File not exist!']);
+        }
     }
 
     /**

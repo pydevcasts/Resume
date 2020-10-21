@@ -16,7 +16,7 @@ class TagController extends Controller
     public function index()
     {
        
-        $tags = Tag::with('profiles')->orderBy('id', 'desc')->get();
+        $tags = Tag::with('profile')->orderBy('id', 'desc')->get();
         return response()->json([
             'tags' => $tags,
         ], 200);
@@ -45,8 +45,11 @@ class TagController extends Controller
         ]);
         $tag = new Tag();
         $tag->tag_name = $request->tag_name;
-        $tag->profile_id = $request->profile_id;
+        // $tag->profile_id = $request->profile_id;
         $tag->save();
+        return response()->json([
+            'message'=>'Tag Created Successfully .'
+        ],200);
 
     }
 

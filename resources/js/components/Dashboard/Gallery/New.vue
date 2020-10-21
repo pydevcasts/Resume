@@ -12,11 +12,13 @@
             class="form-control"
             id="galleryId"
             name="title"
-            v-model="title"
+            v-model="form.title"
             placeholder="Enter title ..."
-       
+            :class="{
+              'is-invalid': form.errors.has('title'),
+            }"
           />
-         
+          <has-error :form="form" field="title"></has-error>
         </div>
         <div class="form-group">
           <label>Summary</label>
@@ -25,11 +27,13 @@
             class="form-control"
             id="galleryId"
             name="title"
-            v-model="summary"
+            v-model="form.summary"
             placeholder="Enter summary ..."
-        
+            :class="{
+              'is-invalid': form.errors.has('summary'),
+            }"
           />
-     
+          <has-error :form="form" field="summary"></has-error>
         </div>
 
         <div class="form-group">
@@ -37,11 +41,11 @@
             @change="changePhoto"
             name="photo"
             type="file"
-          
-          
+            :class="{
+              'is-invalid': form.errors.has('photo'),
+            }"
           />
-          <img :src="photo" alt width="80" height="80" />
-     
+          <has-error :form="form" field="photo"></has-error>
         </div>
       </div>
       <div class="card-footer">
@@ -56,60 +60,35 @@ export default {
   name: "New",
   data() {
     return {
-    
+      form: new Form({
         title: "",
         summary: "",
         photo: "",
-
+      }),
     };
   },
 
   methods: {
     changePhoto(event) {
       console.log(event.target.files[0]);
-    this.photo = event.target.files[0];
-   
-      // if (file.size > 1048576) {
-      //   Toast.fire({
-      //     type: "error",
-      //     title: "Oops...",
-      //     text: "Something went wrong!",
-      //     footer: "<a href>Why do I have this issue?</a>",
-      //   });
-      // } else {
-      //   let reader = new FileReader();
-      //   reader.onload = (event) => {
-      //     this.form.photo = event.target.result;
-      //     console.log(event.target.result);
-      //   };
-      //   reader.readAsDataURL(file);
-      // }
+      this.form.photo = event.target.files[0];
     },
     addnewGallery(event) {
-                      event.preventDefault();
-
-                let formData = new FormData();
-       const config = {
+      event.preventDefault();
+      let formData = new FormData();
+      const config = {
         headers: {
           "content-type": "multipart/form-data",
         },
       };
 
-formData.append('photo', this.photo);
-formData.append('title', this.title);
-formData.append('summary', this.summary);
-axios({
-    method: 'POST',
-    url: 'api/gallery',
-    data: formData,
-    headers: {
-        'Content-Type': 'multipart/form-data'
-    }
-    })
-      // this.form
-      //   .post("/api/gallery", config)
+      formData.append("photo", this.form.photo);
+      formData.append("title", this.form.title);
+      formData.append("summary", this.form.summary);
+      axios
+        .post("/gallery", formData, config)
         .then((response) => {
-          console.log(response)
+          console.log(response);
           this.$router.push("/index_gallery");
           Toast.fire({
             icon: "success",
@@ -119,23 +98,7 @@ axios({
         .catch((error) => {
           console.log(error);
         });
-            }
-      // this.form
-      //   .post("/api/gallery")
-      //   .then((response) => {
-      //     console.log(response)
-      //     this.$router.push("/index_gallery");
-      //     Toast.fire({
-      //       icon: "success",
-      //       title: "Gallery is createde successfully",
-      //     });
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
-    
+    },
   },
 };
-
-
 </script>

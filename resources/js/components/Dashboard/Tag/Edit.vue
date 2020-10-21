@@ -43,14 +43,14 @@ export default {
   },
 
   mounted() {
-    axios.get(`/api/tag/edit/${this.$route.params.tagid}`).then((response) => {
+    axios.get(`/tag/edit/${this.$route.params.tagid}`).then((response) => {
       this.form.fill(response.data.tag);
     });
   },
   methods: {
     updateTag() {
       this.form
-        .put(`/api/tag/${this.$route.params.tagid}`)
+        .put(`tag/${this.$route.params.tagid}`)
         .then((response) => {
           this.$router.push("/index_tag");
 

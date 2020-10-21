@@ -5,10 +5,13 @@ import VueRouter from 'vue-router';
 import {routes} from './routes'
 Vue.use(VueRouter)
 
+// Axios
+import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:8000/api'
+
 
 // vuex
 import store from './store/index'
-
 
 // vform
 import { Form, HasError, AlertError } from 'vform'
@@ -34,6 +37,7 @@ window.Toast = Toast
 
 //moment
 import { filter } from './filter'
+import Axios from 'axios';
 
 const router = new VueRouter({
     mode: 'history',

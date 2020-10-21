@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\About;
-class AboutController extends Controller
+use App\Model\Contact;
+use Mail;
+
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +16,10 @@ class AboutController extends Controller
      */
     public function index()
     {
-        $abouts = About::all();
+        $contacts = Contact::all();
         return response()->json([
-            'abouts'=>$abouts
-        ], 200);
+            'contacts'=>$contacts
+        ],200);
     }
 
     /**
@@ -38,15 +40,29 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'title'=>'required|min:4|max:30',
-            'description'=>'required|min:4|max:300',
+        $this->validate($request, [
+            'name'=>'required|min:2|max:50',
+            'email' => 'required|string|email|max:255',
+            'description'=>'required',
             ]);
-
-        $about = New About();
-        $about->title = $request->title;
-        $about->description = $request->description;
-        $about->save();
+            Contact::create($request->all());
+            $email = Mail::send(
+                'Frontend.contact.mail',
+                array(
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'description' => $request->description
+                ),
+                function ($message) use ($request) {
+                    $user =$request->email;
+                    $message->from($user);
+                    $message->to('siyamak1981@gmail.com')->subject('Contact message');
+                },
+            );
+           
+            return response()->json([
+                'message'=>'Message created Successfully .'
+            ],200);
     }
 
     /**
@@ -68,10 +84,7 @@ class AboutController extends Controller
      */
     public function edit($id)
     {
-        $about = About::find($id);
-        return response()->json([
-            'about'=>$about,
-        ],200);
+        //
     }
 
     /**
@@ -82,15 +95,8 @@ class AboutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    { 
-        $this->validate($request,[
-            'title'=>'required|min:4|max:30',
-            'description'=>'required|min:4|max:300',
-            ]);
-        $about = About::find(1);
-        $about->title = "$request->title";
-        $about->description = $request->description;
-        $about->save();
+    {
+        //
     }
 
     /**
@@ -101,6 +107,9 @@ class AboutController extends Controller
      */
     public function destroy($id)
     {
-        $about = About::find($id)->delete();
+        $contact = Contact::findOrFail($id)->delete();
+        return response()->json([
+            'message'=>'Contact was deleted Successfully. '
+        ]);
     }
 }

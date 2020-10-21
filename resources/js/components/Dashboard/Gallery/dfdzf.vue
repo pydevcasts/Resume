@@ -10,6 +10,7 @@
           <input
             type="text"
             class="form-control"
+            id="tagId"
             name="title"
             v-model="form.title"
             placeholder="Enter name of title ..."
@@ -24,6 +25,7 @@
           <input
             type="text"
             class="form-control"
+            id="summaryId"
             name="summary"
             v-model="form.summary"
             placeholder="Enter name of summary ..."
@@ -38,6 +40,7 @@
           <input
             type="file"
             @change="changePhoto($event)"
+            id="photoId"
             name="photo"
             :class="{
               'is-invalid': form.errors.has('photo'),
@@ -72,7 +75,7 @@ export default {
 
   mounted() {
     axios
-      .get(`/gallery/edit/${this.$route.params.galleryid}`)
+      .get(`/api/gallery/edit/${this.$route.params.galleryid}`)
       .then((response) => {
         this.form.fill(response.data.gallery);
       });
@@ -88,14 +91,13 @@ export default {
           "content-type": "multipart/form-data",
         },
       };
-      formData.append("_method", "put");
       formData.append("photo", this.form.photo);
       formData.append("title", this.form.title);
       formData.append("summary", this.form.summary);
-      axios
-        .post(`/gallery/${this.$route.params.galleryid}`, formData, config)
+      this.form
+        .put(`/api/gallery/${this.$route.params.galleryid}`, formData, config)
         .then((response) => {
-          console.log(response);
+          consol.log(response);
           this.$router.push("/index_gallery");
 
           Toast.fire({

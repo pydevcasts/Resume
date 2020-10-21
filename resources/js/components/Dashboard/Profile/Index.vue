@@ -6,10 +6,10 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Gallery List</h3>
+                <h3 class="card-title">Profile List</h3>
                 <div class="cart-total">
                   <div class="btn btn-primary float-right">
-                    <router-link to="/create_gallery" class="text-white"
+                    <router-link to="/create_profile" class="text-white"
                       >New</router-link
                     >
                   </div>
@@ -37,8 +37,10 @@
                           <tr role="row">
                             <th>Id</th>
                             <th>title</th>
-                            <th>summary</th>
+                            <th>description</th>
                             <th>photo</th>
+                            <th>phone</th>
+                            <th>email</th>
                             <th>created</th>
                             <th>Action</th>
                           </tr>
@@ -47,35 +49,41 @@
                           <tr
                             role="row"
                             class="even"
-                            v-for="(gallery, index) in getAllgallery"
-                            :key="gallery.id"
+                            v-for="(profile, index) in getAllprofile"
+                            :key="profile.id"
                           >
                             <td class="sorting_1" tabindex="0">
                               {{ index + 1 }}
                             </td>
                             <td>
-                              {{ gallery.title }}
+                              {{ profile.title }}
                             </td>
                             <td>
-                              {{ gallery.summary | sortlength(40, "....") }}
+                              {{ profile.description | sortlength(40, "....") }}
                             </td>
                             <td>
                                 <img 
-                                                :src="ourImage(gallery.photo)"
+                                                :src="ourImage(profile.photo)"
                                                 alt=""                                    
                                                 class="center"
                                                 :class="{imgstyle: isWidth}"
                                             />
                             </td>
-                            <td>
-                              {{ gallery.created_at | timeformat }}
+                               <td>
+                              {{ profile.phone }}
                             </td>
                             <td>
-                              <router-link :to="`edit_gallery/${gallery.id}`"
+                              {{ profile.email }}
+                            </td>
+                            <td>
+                              {{ profile.created_at | timeformat }}
+                            </td>
+                            <td>
+                              <router-link :to="`edit_profile/${profile.id}`"
                                 >Edit</router-link
                               >
                               |
-                              <a href="" @click.prevent="deleteGallery(gallery.id)"
+                              <a href="" @click.prevent="deleteProfile(profile.id)"
                                 >Delete</a
                               >
                             </td>
@@ -83,10 +91,12 @@
                         </tbody>
                         <tfoot>
                           <tr>
-                            <th>Id</th>
+                             <th>Id</th>
                             <th>title</th>
-                            <th>summary</th>
+                            <th>description</th>
                             <th>photo</th>
+                            <th>phone</th>
+                            <th>email</th>
                             <th>created</th>
                             <th>Action</th>
                           </tr>
@@ -224,16 +234,16 @@ isWidth:true
     }
   },
   mounted() {
-    this.$store.dispatch("allGalleryFromDatabase");
+    this.$store.dispatch("allProfileFromDatabase");
   },
   computed: {
-    getAllgallery() {
-      return this.$store.getters.getGalleryFormGetters;
+    getAllprofile() {
+      return this.$store.getters.getProfileFormGetters;
     },
   },
   methods: {
       ourImage(img) {
-            return `http://127.0.0.1:8000/storage/gallery/${img}`;
+            return `http://127.0.0.1:8000/storage/profile/${img}`;
         },
     deleteGallery(id) {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -256,8 +266,8 @@ isWidth:true
                 })
                 .then(result => {
                     if (result.value) {
-                        axios.delete("gallery/" + id);
-                        this.$store.dispatch("allGalleryFromDatabase");
+                        axios.delete("profile/" + id);
+                        this.$store.dispatch("allPProfileFromDatabase");
                         swalWithBootstrapButtons.fire(
                             "Deleted!",
                             "Your file has been deleted.",
