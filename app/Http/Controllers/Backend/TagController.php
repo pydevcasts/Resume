@@ -16,7 +16,7 @@ class TagController extends Controller
     public function index()
     {
        
-        $tags = Tag::with('profile')->orderBy('id', 'desc')->get();
+        $tags = Tag::with('profiles')->orderBy('id', 'desc')->get();
         return response()->json([
             'tags' => $tags,
         ], 200);

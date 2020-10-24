@@ -42,30 +42,33 @@ class ProfileController extends Controller
      */
     public function store(Request $r)
     {
-
-        $this->validate($r,[
-            'photo'=>'required',
-            'tags'=>'required|exists:tags,id',
-            'title'=>'required',
-            'description'=>'required',
-            'social_media_1'=>'required',
-            'phone'=>'required',
-            'address'=>'required',
-            'address'=>'required',
-            'email'=>'required',
-
+        $r->validate([
+       
+            // دلیلش اینه name:یچیزی
+          // داره میاد که آیدی نیست
+            'photo'=>'required|image',
+            'tags'=>'required|array|max:10',
+            'tags.*'=>'nullable',
+            'title'=>'nullable',
+            'description'=>'nullable',
+            'social_media_1'=>'nullable',
+            'phone'=>'nullable',
+            'address'=>'nullable',
+            'address'=>'nullable',
+            'email'=>'nullable',
             ]);
+           
 
             if($r->hasFile('photo')){
             $image = $r->file('photo');
             $filename =time() . '.' . $image->getClientOriginalExtension();
+           
             Storage::disk('local')->putFileAs('profile/', $image, $filename);
-
-        }
-
+            }
             $profile = New Profile();
-            $profile->photo = $filename;
-            $profile->tag_id = $r->tags;
+           
+            $profile->photo = $filename;            
+           
             $profile->title = $r->title;
             $profile->description = $r->description;
             $profile->social_media_1 = $r->social_media_1;
@@ -74,9 +77,20 @@ class ProfileController extends Controller
             $profile->phone = $r->phone;
             $profile->email = $r->email;
             $profile->address = $r->address;
+            
             $profile->save();
+            $codes=[];
+                foreach($r->tags as $tag){
+                    
+                    $codes[] = $tag;
+                }
+                
+                $profile->tags()->sync($codes);
+            
             return response()->json(['success'=>'Uploaded Successfully.']);
- 
+        // }else {
+            // return response()->json(['error'=>'File not exist!']);
+        // }
     }
 
     /**
