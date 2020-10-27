@@ -71,7 +71,7 @@ export default {
   methods: {
     updateAbout() {
       this.form
-        .put(`/api/about/${this.$route.params.aboutid}`)
+        .put(`/about/${this.$route.params.aboutid}`)
         .then((response) => {
           this.$router.push("/index_about");
 

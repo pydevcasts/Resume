@@ -1,4 +1,4 @@
-
+// Start Backend
 import Home from './components/Dashboard/Home.vue';
 import Dashboard from './components/Dashboard/Dashboard.vue';
 import Users from './components/Dashboard/Users.vue';
@@ -25,16 +25,22 @@ import EditService from './components/Dashboard/Service/Edit.vue';
 // Contact
 import ContactIndex from './components/Dashboard/Message/Index.vue';
 import AddContact from './components/Dashboard/Message/New.vue';
+// End backend
 
+// FrontEnd Component
+import Landing from './components/Frontend/Landing.vue';
+// import PublicHome from './components/Frontend/PublicHome.vue'
+// import PublicMaster from './components/Frontend/PublicMaster.vue'
 
 export const routes = [
+    // Start Backend
     { path: '/home', component: Home },
     { path: '/dashboard', component: Dashboard },
     { path: '/users', component: Users },
     // Profile
     { path: '/index_profile', component: ProfileIndex },
     { path: '/create_profile', component: AddProfile },
-    { path: '/edit_profile/:aboutid', component: EditProfile },
+    { path: '/edit_profile/:profileid', component: EditProfile },
     // About
     { path: '/index_about', component: AboutIndex },
     { path: '/create_about', component: AddAbout },
@@ -56,6 +62,12 @@ export const routes = [
     // Contact
     { path: '/index_contact', component: ContactIndex },
     { path: '/create_contact', component: AddContact},
+    // End Backend
 
+   // Frontend Route
+ 
+
+    { path: '/', component: Landing },
+    
    
  ]

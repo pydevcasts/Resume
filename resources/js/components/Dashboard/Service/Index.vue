@@ -244,7 +244,7 @@ export default {
     methods:{
         deleteService(id){
             console.log("its ok")
-            axios.delete(`api/service/${id}`)
+            axios.delete(`service/${id}`)
            .then(() => {
                     this.$store.dispatch("allServiceFromDatabase");
                     Toast.fire({

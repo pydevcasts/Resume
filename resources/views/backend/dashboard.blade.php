@@ -62,23 +62,19 @@
             <a href="#" class="d-block"> {{Auth::user()->name}} Dashboard</a>
           </div>
         </div>
-
-   
-    @include('backend.sidebar-menu')
-
+        @include('backend.sidebar-menu')
       </div>
       <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class = "content-wrapper">
-  <div class ="content">
-    <div class="container-fluid">
-      <router-view></router-view>
+  <div class = "content-wrapper">
+    <div class ="content">
+      <div class="container-fluid">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
-</div>
-
 
     <!-- Main Footer -->
     <footer class="main-footer">

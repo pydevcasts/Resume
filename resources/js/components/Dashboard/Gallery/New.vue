@@ -12,14 +12,11 @@
             class="form-control"
             id="galleryId"
             name="title"
-            v-model="form.title"
+            v-model="title"
             placeholder="Enter title ..."
-            :class="{
-              'is-invalid': form.errors.has('title'),
-            }"
           />
-          <has-error :form="form" field="title"></has-error>
         </div>
+        <div class="red">{{ errors.title }}</div>
         <div class="form-group">
           <label>Summary</label>
           <input
@@ -27,26 +24,15 @@
             class="form-control"
             id="galleryId"
             name="title"
-            v-model="form.summary"
+            v-model="summary"
             placeholder="Enter summary ..."
-            :class="{
-              'is-invalid': form.errors.has('summary'),
-            }"
           />
-          <has-error :form="form" field="summary"></has-error>
         </div>
-
+        <div class="red">{{ errors.summary }}</div>
         <div class="form-group">
-          <input
-            @change="changePhoto"
-            name="photo"
-            type="file"
-            :class="{
-              'is-invalid': form.errors.has('photo'),
-            }"
-          />
-          <has-error :form="form" field="photo"></has-error>
+          <input @change="changePhoto" name="photo" type="file" />
         </div>
+        <div class="red">{{ errors.photo }}</div>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -60,18 +46,18 @@ export default {
   name: "New",
   data() {
     return {
-      form: new Form({
-        title: "",
-        summary: "",
-        photo: "",
-      }),
+      title: "",
+      summary: "",
+      photo: "",
+      valid: true,
+      errors: {},
     };
   },
 
   methods: {
     changePhoto(event) {
       console.log(event.target.files[0]);
-      this.form.photo = event.target.files[0];
+      this.photo = event.target.files[0];
     },
     addnewGallery(event) {
       event.preventDefault();
@@ -82,9 +68,45 @@ export default {
         },
       };
 
-      formData.append("photo", this.form.photo);
-      formData.append("title", this.form.title);
-      formData.append("summary", this.form.summary);
+      formData.append("photo", this.photo);
+      formData.append("title", this.title);
+      formData.append("summary", this.summary);
+      this.errors = {};
+      const validateName = (title) => {
+        if (!title.length) {
+          return { valid: false, error: "This field is required" };
+        }
+        return { valid: true, error: null };
+      };
+      const validName = validateName(this.title);
+      this.errors.title = validName.error;
+      if (this.valid) {
+        this.valid = validName.valid;
+      }
+
+      const validateSummary = (summary) => {
+        if (!summary.length) {
+          return { valid: false, error: "This field is required" };
+        }
+        return { valid: true, error: null };
+      };
+      const validSummary = validateSummary(this.summary);
+      this.errors.summary = validSummary.error;
+      if (this.valid) {
+        this.valid = validSummary.valid;
+      }
+
+      const validatePhoto = (photo) => {
+        if (!photo.length) {
+          return { valid: false, error: "This field is required" };
+        }
+        return { valid: true, error: null };
+      };
+      const validPhoto = validatePhoto(this.title);
+      this.errors.photo = validPhoto.error;
+      if (this.valid) {
+        this.valid = validPhoto.valid;
+      }
       axios
         .post("/gallery", formData, config)
         .then((response) => {

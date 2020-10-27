@@ -39,11 +39,7 @@
             type="file"
             @change="changePhoto($event)"
             name="photo"
-            :class="{
-              'is-invalid': form.errors.has('photo'),
-            }"
           />
-          <has-error :form="form" field="photo"></has-error>
         </div>
       </div>
       <div class="card-footer">

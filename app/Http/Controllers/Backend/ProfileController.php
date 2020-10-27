@@ -40,57 +40,49 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $r)
+    public function store(Request $request)
     {
-        $r->validate([
-       
-            // دلیلش اینه name:یچیزی
-          // داره میاد که آیدی نیست
-            'photo'=>'required|image',
+        $this->validate($request, [
+            'photo'=>'required',
             'tags'=>'required|array|max:10',
-            'tags.*'=>'nullable',
-            'title'=>'nullable',
-            'description'=>'nullable',
-            'social_media_1'=>'nullable',
-            'phone'=>'nullable',
-            'address'=>'nullable',
-            'address'=>'nullable',
-            'email'=>'nullable',
+            'tags.*'=>'required',
+            'title'=>'required',
+            'description'=>'required',
+            'social_media_1'=>'required',
+            'social_media_2'=>'required',
+            'social_media_3'=>'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'address'=>'required',
+            'email'=>'required',
             ]);
            
-
-            if($r->hasFile('photo')){
-            $image = $r->file('photo');
+            if($request->hasFile('photo')){
+            $image = $request->file('photo');
             $filename =time() . '.' . $image->getClientOriginalExtension();
-           
             Storage::disk('local')->putFileAs('profile/', $image, $filename);
             }
+
             $profile = New Profile();
-           
             $profile->photo = $filename;            
-           
-            $profile->title = $r->title;
-            $profile->description = $r->description;
-            $profile->social_media_1 = $r->social_media_1;
-            $profile->social_media_2 = $r->social_media_2;
-            $profile->social_media_3 = $r->social_media_3;
-            $profile->phone = $r->phone;
-            $profile->email = $r->email;
-            $profile->address = $r->address;
+            $profile->title = $request->title;
+            $profile->description = $request->description;
+            $profile->social_media_1 = $request->social_media_1;
+            $profile->social_media_2 = $request->social_media_2;
+            $profile->social_media_3 = $request->social_media_3;
+            $profile->phone = $request->phone;
+            $profile->email = $request->email;
+            $profile->address = $request->address;
             
             $profile->save();
             $codes=[];
-                foreach($r->tags as $tag){
+                foreach($request->tags as $tag){
                     
                     $codes[] = $tag;
                 }
-                
-                $profile->tags()->sync($codes);
-            
+                $profile->tags()->sync($codes); 
             return response()->json(['success'=>'Uploaded Successfully.']);
-        // }else {
-            // return response()->json(['error'=>'File not exist!']);
-        // }
+       
     }
 
     /**
@@ -112,9 +104,12 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profile =Profile::findOrFail($id);
+        $profile = Profile::with('tags')->where('id', $id)->first();
+        $tags =tag::all();
+     
         return response()->json([
-            'profile'=>'$profile'
+            'profile'=>$profile,
+            'tags'=>$tags,
         ],200);
     }
 
@@ -127,23 +122,31 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        
+      
+        $this->validate($request, [
             'photo'=>'required',
+            'tags'=>'required|array|max:10',
+            'tags.*'=>'required',
             'title'=>'required',
             'description'=>'required',
             'social_media_1'=>'required',
+            'social_media_2'=>'required',
+            'social_media_3'=>'required',
             'phone'=>'required',
             'address'=>'required',
             'address'=>'required',
             'email'=>'required',
             ]);
+           
             if($request->hasFile('photo')){
-                $image = $request->file('photo');
+            $image = $request->file('photo');
             $filename =time() . '.' . $image->getClientOriginalExtension();
             Storage::disk('local')->putFileAs('profile/', $image, $filename);
-            $profile =Profile::findOrFail($id);
-            Storage::disk('local')->delete('profile/'.$profile['photo']);
-            $profile->photo = $filename;
+            }
+
+            $profile = Profile::find($id);
+            $profile->photo = $filename;            
             $profile->title = $request->title;
             $profile->description = $request->description;
             $profile->social_media_1 = $request->social_media_1;
@@ -152,13 +155,16 @@ class ProfileController extends Controller
             $profile->phone = $request->phone;
             $profile->email = $request->email;
             $profile->address = $request->address;
-      
+            
             $profile->save();
+            $codes=[];
+            foreach($request->tags as $tag){
+                
+                $codes[] = $tag;
+            }
+            $profile->tags()->sync($codes); 
+            
             return response()->json(['success'=>'Uploaded Successfully.']);
-        }
-    else {
-        return response()->json(['error'=>'File not exist!']);
-    }
     }
     
 

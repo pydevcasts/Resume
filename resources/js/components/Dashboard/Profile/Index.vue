@@ -63,7 +63,7 @@
                             <td>{{ profile.created_at | timeformat }}</td>
                             <td>
                               <router-link :to="`edit_profile/${profile.id}`">Edit</router-link>|
-                              <a href @click.prevent="deleteProfile(profile.id)">Delete</a>
+                              <a href @click.prevent="emitProfile(profile.id, index)">Delete</a>
                             </td>
                           </tr>
                         </tbody>
@@ -106,33 +106,7 @@
                               class="page-link"
                             >Previous</a>
                           </li>
-                          <li class="paginate_button page-item active">
-                            <a
-                              href="#"
-                              aria-controls="example2"
-                              data-dt-idx="1"
-                              tabindex="0"
-                              class="page-link"
-                            >1</a>
-                          </li>
-                          <li class="paginate_button page-item">
-                            <a
-                              href="#"
-                              aria-controls="example2"
-                              data-dt-idx="2"
-                              tabindex="0"
-                              class="page-link"
-                            >2</a>
-                          </li>
-                          <li class="paginate_button page-item">
-                            <a
-                              href="#"
-                              aria-controls="example2"
-                              data-dt-idx="3"
-                              tabindex="0"
-                              class="page-link"
-                            >3</a>
-                          </li>
+                    
                           <li class="paginate_button page-item">
                             <a
                               href="#"
@@ -198,7 +172,7 @@ export default {
     ourImage(img) {
       return `http://127.0.0.1:8000/storage/profile/${img}`;
     },
-    deleteGallery(id) {
+    emitProfile(id) {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: "btn btn-success",
@@ -219,17 +193,16 @@ export default {
         })
         .then((result) => {
           if (result.value) {
-            axios.delete("profile/" + id);
-            this.$store.dispatch("allPProfileFromDatabase");
+            axios.delete(`profile/${id}`);
+            this.$store.dispatch("allProfileFromDatabase");
+              const idx = this.profile.indexOf(profile)
+            this.profile.splice(idx, 1)
             swalWithBootstrapButtons.fire(
               "Deleted!",
               "Your file has been deleted.",
               "success"
             );
-          } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-          ) {
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
             swalWithBootstrapButtons.fire(
               "Cancelled",
               "Your imaginary file is safe :)",
