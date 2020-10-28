@@ -6,13 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <title>Dashboard |  {{Auth::user()->name}}</title>
-  <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
+  <title>Dashboard | {{Auth::user()->name}}</title>
 </head>
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper" id="app">
-
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -68,26 +66,22 @@
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-  <div class = "content-wrapper">
-    <div class ="content">
-      <div class="container-fluid">
-        <router-view></router-view>
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="container-fluid">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
-  </div>
 
-    <!-- Main Footer -->
     <footer class="main-footer">
-      <!-- To the right -->
       <div class="float-right d-none d-sm-inline">
         Anything you want
       </div>
-      <!-- Default to the left -->
       <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">Siyamak</a>.</strong> All rights reserved.
-
     </footer>
   </div>
-  <!-- ./wrapper -->
+
   <script src="{{mix('js/app.js')}}"></script>
 </body>
 

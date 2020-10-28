@@ -3,9 +3,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .options({
-        processCssUrls: false
-    });
+
 
 mix.styles([
     
@@ -17,8 +15,12 @@ mix.styles([
    
 ], 'public/css/all.css');
 
+
 mix.scripts([
     'public/frontend/landing/js/aos.js',
     'public/frontend/landing/js/jquery.min.js',
     'public/frontend/landing/js/main.js'
 ], 'public/js/all.js');
+
+
+ 

@@ -36,9 +36,15 @@
           <has-error :form="form" field="email"></has-error>
         </div>
         <div class="form-group">
-          <label>Description</label>
-          <textarea name="description" id v-model="form.description"></textarea>
-          <has-error :form="form" field="description"></has-error>
+          <label for="exampleInputName">Description</label>
+          <textarea
+            class="form-control"
+            name="description"
+            v-model="form.description"
+            placeholder="Enter description ..."
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
       </div>
       <div class="card-footer">

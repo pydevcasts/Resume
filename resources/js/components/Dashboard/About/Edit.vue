@@ -20,17 +20,14 @@
           />
           <has-error :form="form" field="title"></has-error>
         </div>
-        <div class="form-group">
+           <div class="form-group">
           <label>Description</label>
-          <textarea
-            name="description"
-            id="aboutId"
-            v-model="form.description"
-            placeholder="Enter description ..."
-            :class="{
+             <ckeditor v-model="form.description" 
+             placeholder="Enter description ..."
+             :class="{
               'is-invalid': form.errors.has('description'),
-            }"
-          ></textarea>
+            }" ></ckeditor>
+          
           <has-error :form="form" field="description"></has-error>
         </div>
       </div>
@@ -63,7 +60,7 @@ export default {
 
   mounted() {
     axios
-      .get(`/api/about/edit/${this.$route.params.aboutid}`)
+      .get(`/about/edit/${this.$route.params.aboutid}`)
       .then((response) => {
         this.form.fill(response.data.about);
       });

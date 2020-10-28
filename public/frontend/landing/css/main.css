@@ -148,7 +148,7 @@ h6 {
   position: fixed;
   top: -100vh;
   z-index: 50;
-  background-color: #403f44;
+  background-color: #000507;
   border-bottom-left-radius: 100%;
   border-bottom-right-radius: 100%;
   transition: all 650ms cubic-bezier(1, 0, 0, 1);
@@ -173,6 +173,7 @@ h6 {
   font-size: 2rem;
   padding: 1rem;
   font-style: italic;
+  color:#48da9b;
 }
 
 .nav-link:hover,

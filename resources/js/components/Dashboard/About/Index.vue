@@ -239,7 +239,7 @@ export default {
     methods:{
         deleteAbout(id){
             console.log("its ok")
-            axios.delete(`api/about/${id}`)
+            axios.delete(`/about/${id}`)
            .then(() => {
                     this.$store.dispatch("allAboutFromDatabase");
                     Toast.fire({

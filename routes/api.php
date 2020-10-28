@@ -17,6 +17,7 @@ Route::apiResources(
 );
 
 Route::get('tag/edit/{id}', 'Backend\TagController@edit')->name('tag.edit');
+Route::get('/deletetag/{id}', 'Backend\TagController@selected_tag');
 Route::apiResources(
     [
         'tag' => 'Backend\TagController'

@@ -3,138 +3,130 @@
     <div class="card-header">
       <h3 class="card-title">Edit Profile</h3>
     </div>
-      <form role="form" method="POST" enctype="multipart/form-data" @submit="updateGallery">
-    <div class="card-body">
-      <div class="form-group">
-        <label for="exampleInputName">Name Profile</label>
-        <input
-          type="text"
-          class="form-control"
-          id="profileId"
-          name="title"
-          v-model="title"
-          placeholder="Enter title ..."
-        />
-      </div>
-      <div class="red">{{ errors.title }}</div>
+    <form role="form" method="POST" enctype="multipart/form-data" @submit="updateGallery">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="exampleInputName">Name Profile</label>
+          <input
+            type="text"
+            class="form-control"
+            id="profileId"
+            name="title"
+            v-model="title"
+            placeholder="Enter title ..."
+          />
+        </div>
+        <div class="red">{{ errors.title }}</div>
 
-      <div class="form-group">
-        <label>Description</label>
-        <textarea
-          class="form-control"
-          id="profileId"
-          name="description"
-          v-model="description"
-          placeholder="Enter description ..."
-          cols="30"
-          rows="10"
-        ></textarea>
-      </div>
-      <div class="red">{{ errors.description }}</div>
-      <div class="form-group">
-        <label>Upload File</label>
-        <input @change="changePhoto" name="photo" type="file" />
-      </div>
-      <div class="red">{{ errors.photo }}</div>
+        <div class="form-group">
+          <label>Description</label>
+          <ckeditor v-model="description" placeholder="Enter description ..."></ckeditor>
+        </div>
+        <div class="red">{{ errors.description }}</div>
+        <div class="form-group">
+          <label>Upload File</label>
+          <input @change="changePhoto" name="photo" type="file" />
+        </div>
+        <div class="red">{{ errors.photo }}</div>
 
-      <div class="form-group">
-        <label>Phone</label>
-        <input
-          type="text"
-          class="form-control"
-          id="profileId"
-          name="phone"
-          v-model="phone"
-          placeholder="Enter phone ..."
-        />
-      </div>
-      <div class="red">{{ errors.phone }}</div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input
+            type="text"
+            class="form-control"
+            id="profileId"
+            name="phone"
+            v-model="phone"
+            placeholder="Enter phone ..."
+          />
+        </div>
+        <div class="red">{{ errors.phone }}</div>
 
-      <div class="form-group">
-        <label>Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="profileId"
-          name="email"
-          v-model="email"
-          placeholder="Enter phone ..."
-        />
-      </div>
-      <div class="red">{{ errors.email }}</div>
+        <div class="form-group">
+          <label>Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="profileId"
+            name="email"
+            v-model="email"
+            placeholder="Enter phone ..."
+          />
+        </div>
+        <div class="red">{{ errors.email }}</div>
 
-      <div class="form-group">
-        <label>Address</label>
-        <input
-          type="text"
-          class="form-control"
-          id="profileId"
-          name="address"
-          v-model="address"
-          placeholder="Enter address ..."
-        />
-      </div>
-      <div class="red">{{ errors.address }}</div>
+        <div class="form-group">
+          <label>Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="profileId"
+            name="address"
+            v-model="address"
+            placeholder="Enter address ..."
+          />
+        </div>
+        <div class="red">{{ errors.address }}</div>
 
-      <div class="form-group">
-        <label>Social</label>
-        <input
-          type="text"
-          class="form-control"
-          id="profileId"
-          name="social_media_1"
-          v-model="social_media_1"
-          placeholder="Enter social_media_1 ..."
-        />
-      </div>
-      <div class="red">{{ errors.social_media_1 }}</div>
+        <div class="form-group">
+          <label>Social</label>
+          <input
+            type="text"
+            class="form-control"
+            id="profileId"
+            name="social_media_1"
+            v-model="social_media_1"
+            placeholder="Enter social_media_1 ..."
+          />
+        </div>
+        <div class="red">{{ errors.social_media_1 }}</div>
 
-      <div class="form-group">
-        <label>Social</label>
-        <input
-          type="text"
-          class="form-control"
-          id="profileId"
-          name="social_media_2"
-          v-model="social_media_2"
-          placeholder="Enter social_media_2 ..."
-        />
-      </div>
-      <div class="red">{{ errors.social_media_2 }}</div>
+        <div class="form-group">
+          <label>Social</label>
+          <input
+            type="text"
+            class="form-control"
+            id="profileId"
+            name="social_media_2"
+            v-model="social_media_2"
+            placeholder="Enter social_media_2 ..."
+          />
+        </div>
+        <div class="red">{{ errors.social_media_2 }}</div>
 
-      <div class="form-group">
-        <label>Social</label>
-        <input
-          type="text"
-          class="form-control"
-          id="profileId"
-          name="social_media_1"
-          v-model="social_media_3"
-          placeholder="Enter social_media_3 ..."
-        />
-      </div>
-      <div class="red">{{ errors.social_media_3 }}</div>
+        <div class="form-group">
+          <label>Social</label>
+          <input
+            type="text"
+            class="form-control"
+            id="profileId"
+            name="social_media_1"
+            v-model="social_media_3"
+            placeholder="Enter social_media_3 ..."
+          />
+        </div>
+        <div class="red">{{ errors.social_media_3 }}</div>
 
-      <div class="form-group">
-        <label class="typo__label">Tagging</label>
-        <multiselect
-          v-model="value"
-          tag-placeholder="Add this as new tag"
-          placeholder="Search or add a tag"
-          label="name"
-          track-by="code"
-          :options="options"
-          :multiple="true"
-          :taggable="true"
-          @tag="addTag"
-        ></multiselect>
-        <pre class="language-json"><code>{{ value  }}</code></pre>
+        <div class="form-group">
+          <label class="typo__label">Tagging</label>
+          <multiselect
+            v-model="value"
+            tag-placeholder="Add this as new tag"
+            placeholder="Search or add a tag"
+            label="name"
+            track-by="code"
+            :options="options"
+            :multiple="true"
+            :taggable="true"
+            @tag="addTag"
+          ></multiselect>
+          <pre class="language-json"><code>{{ value  }}</code></pre>
+        </div>
+        <div></div>
       </div>
-      <div></div>
-    </div>
-    <div class="card-footer">
-      <button type="submit" class="btn btn-primary" >Submit</button>
-    </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </form>
   </div>
 </template>
@@ -324,7 +316,7 @@ export default {
         .post(`profile/${this.$route.params.profileid}`, formData, config)
         .then((response) => {
           console.log("test is : ", response);
-          // this.$router.push("/index_profile");
+          this.$router.push("/index_profile");
           Toast.fire({
             icon: "success",
             title: "Gallery is createde successfully",

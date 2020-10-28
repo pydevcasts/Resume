@@ -173,6 +173,7 @@ h6 {
   font-size: 2rem;
   padding: 1rem;
   font-style: italic;
+  background-color: linear-gradient(to top, #48da9b, #837c9a);
 }
 
 .nav-link:hover,

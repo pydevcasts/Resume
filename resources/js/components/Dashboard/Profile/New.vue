@@ -19,15 +19,7 @@
 
       <div class="form-group">
         <label>Description</label>
-        <textarea
-          class="form-control"
-          id="profileId"
-          name="description"
-          v-model="description"
-          placeholder="Enter description ..."
-          cols="30"
-          rows="10"
-        ></textarea>
+        <ckeditor v-model="description" placeholder="Enter description ..."></ckeditor>
       </div>
       <div class="red">{{ errors.description }}</div>
       <div class="form-group">
@@ -48,7 +40,6 @@
         />
       </div>
       <div class="red">{{ errors.phone }}</div>
-
       <div class="form-group">
         <label>Email</label>
         <input
@@ -162,7 +153,6 @@ export default {
   },
 
   mounted() {
-
     this.lisTag();
   },
 
@@ -309,7 +299,7 @@ export default {
         .post("/profile", formData, config)
         .then((response) => {
           console.log("test is : ", response);
-          // this.$router.push("/index_profile");
+          this.$router.push("/index_profile");
           Toast.fire({
             icon: "success",
             title: "Gallery is createde successfully",

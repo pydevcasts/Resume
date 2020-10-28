@@ -1,31 +1,6 @@
 <template>
   <div>
-        <header>
-        <div class="menu-toggler">
-            <div class="bar half start"></div>
-            <div class="bar"></div>
-            <div class="bar half end"></div>
-        </div>
-        <nav class="top-nav">
-            <ul class="nav-list">
-                <li>
-                    <a href="#hom" class="nav-link">Home</a>
-                </li>
-                <li>
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li>
-                    <a href="#service" class="nav-link">Services</a>
-                </li>
-                <li>
-                    <a href="#experience" class="nav-link">Experience</a>
-                </li>
-                <li>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+       
    <div id="main_container">
         <div id="header">
             <div class="header_logotype_container">

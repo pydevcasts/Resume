@@ -15,7 +15,7 @@ class TagController extends Controller
      */
     public function index()
     {
-       
+
         $tags = Tag::with('profiles')->orderBy('id', 'desc')->get();
         return response()->json([
             'tags' => $tags,
@@ -40,16 +40,16 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'tag_name'=>'required|min:2|max:50'
+        $this->validate($request, [
+            'tag_name' => 'required|min:2|max:50'
         ]);
         $tag = new Tag();
         $tag->tag_name = $request->tag_name;
         $tag->save();
         return response()->json([
-            'message'=>'Tag Created Successfully .'
-        ],200);
-// تلگرام
+            'message' => 'Tag Created Successfully .'
+        ], 200);
+        // تلگرام
     }
 
     /**
@@ -86,13 +86,12 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'tag_name'=>'required|min:2|max:50'
+        $this->validate($request, [
+            'tag_name' => 'required|min:2|max:50'
         ]);
         $tag = Tag::find($id);
         $tag->tag_name = $request->tag_name;
         $tag->save();
-
     }
 
     /**
@@ -105,5 +104,13 @@ class TagController extends Controller
     {
         $tag = Tag::find($id);
         $tag->delete();
+    }
+    public function selected_tag(Request $request, $ids)
+    {
+        $all_id = explode(',', $ids);
+        foreach ($all_id as $id) {
+            $tag = Tag::find($id);
+            $tag->delete();
+        }
     }
 }

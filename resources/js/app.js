@@ -40,6 +40,12 @@ import { filter } from './filter'
 import Axios from 'axios';
 import { multiselectMixin } from 'vue-multiselect';
 
+//CKEDITOR
+import CKEditor from 'ckeditor4-vue';
+Vue.use( CKEditor );
+
+
+
 const router = new VueRouter({
     mode: 'history',
     routes

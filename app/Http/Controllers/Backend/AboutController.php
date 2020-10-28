@@ -87,8 +87,8 @@ class AboutController extends Controller
             'title'=>'required|min:4|max:30',
             'description'=>'required|min:4|max:300',
             ]);
-        $about = About::find(1);
-        $about->title = "$request->title";
+        $about = About::find($id);
+        $about->title = $request->title;
         $about->description = $request->description;
         $about->save();
     }
