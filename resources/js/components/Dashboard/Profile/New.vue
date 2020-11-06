@@ -78,6 +78,18 @@
         />
       </div>
       <div class="red">{{ errors.social_media_1 }}</div>
+      <div class="form-group">
+        <label>Link</label>
+        <input
+          type="text"
+          class="form-control"
+          id="profileId"
+          name="link_1"
+          v-model="link_1"
+          placeholder="Enter link ..."
+        />
+      </div>
+      <div class="red">{{ errors.link_1 }}</div>
 
       <div class="form-group">
         <label>Social</label>
@@ -91,6 +103,17 @@
         />
       </div>
       <div class="red">{{ errors.social_media_2 }}</div>
+ <div class="form-group">
+        <label>Link</label>
+        <input
+          type="text"
+          class="form-control"
+          name="link_2"
+          v-model="link_2"
+          placeholder="Enter link ..."
+        />
+      </div>
+      <div class="red">{{ errors.link_2 }}</div>
 
       <div class="form-group">
         <label>Social</label>
@@ -104,6 +127,17 @@
         />
       </div>
       <div class="red">{{ errors.social_media_3 }}</div>
+ <div class="form-group">
+        <label>Link</label>
+        <input
+          type="text"
+          class="form-control"
+          name="link_3"
+          v-model="link_3"
+          placeholder="Enter link ..."
+        />
+      </div>
+      <div class="red">{{ errors.link_3 }}</div>
 
       <div class="form-group">
         <label class="typo__label">Tagging</label>
@@ -149,6 +183,9 @@ export default {
       social_media_1: "",
       social_media_2: "",
       social_media_3: "",
+      link_1:"",
+      link_2:"",
+      link_3:"",
     };
   },
 
@@ -180,6 +217,9 @@ export default {
       formData.append("social_media_1", this.social_media_1);
       formData.append("social_media_2", this.social_media_2);
       formData.append("social_media_3", this.social_media_3);
+      formData.append("social_media_1", this.link_1);
+      formData.append("social_media_2", this.link_2);
+      formData.append("social_media_3", this.link_3);
 
       for (let i = 0; i < this.value.length; i++) {
         formData.append("tags[]", this.value[i].code);

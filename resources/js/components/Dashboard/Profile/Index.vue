@@ -44,7 +44,7 @@
                 >
                   <td class="sorting_1" tabindex="0">{{ index + 1 }}</td>
                   <td>{{ profile.title }}</td>
-                  <td>{{ profile.description | sortlength(40, "....") }}</td>
+                  <td>{{ profile.description | sortlength(40, "....")|striphtml }}</td>
                   <td>
                     <img
                       :src="ourImage(profile.photo)"

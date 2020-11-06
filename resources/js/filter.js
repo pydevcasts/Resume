@@ -13,3 +13,9 @@ Vue.filter('upText', function (text) {
   return text.charAt(0).toUpperCase() + text.slice(1)
 });
 
+Vue.filter('striphtml', function (value) {
+  var p = document.createElement("p");
+  p.innerHTML = value;
+  var text = p.textContent || p.innerText || "";
+  return text;
+});

@@ -44,7 +44,7 @@
                   <td class="sorting_1" tabindex="0">{{ index + 1 }}</td>
                   <td>{{ service.icon }}</td>
                   <td>{{ service.title }}</td>
-                  <td>{{ service.description }}</td>
+                  <td>{{ service.description|striphtml }}</td>
                   <td>
                     {{
                     service.created_at

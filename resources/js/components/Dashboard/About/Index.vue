@@ -1,10 +1,6 @@
 <template>
-    <div class="container mt-3">
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
+   
+                       <div class="card card-primary mt-3">
                             <div class="card-header">
                                 <h3 class="card-title">About List</h3>
                                 <div class="cart-total">
@@ -62,7 +58,7 @@
                                                             {{ about.title }}
                                                         </td>
                                                         <td>
-                                                            {{ about.description }}
+                                                            {{ about.description|striphtml }}
                                                         </td>
                                                         <td>
                                                             {{
@@ -214,14 +210,7 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-            </div>
-            <!-- /.container-fluid -->
-        </section>
-    </div>
+              
 </template>
 
 <script>

@@ -9,6 +9,6 @@ class Tag extends Model
    
     public function profiles()
     {
-        return $this->belongsToMany(Profile::class, 'profile_tags')->withTimestamps();
+        return $this->belongsToMany(Profile::class, 'tag_profiles')->withTimestamps();
     }
 }

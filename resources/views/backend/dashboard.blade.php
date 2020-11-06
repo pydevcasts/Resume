@@ -5,8 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <title>Dashboard | {{Auth::user()->name}}</title>
+  <title>Dashboard | Siyamak</title>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -35,7 +36,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
-        <small class="navbar-text">welcome<span> {{Auth::user()->name}}</span></small>
+        <small class="navbar-text">welcome<span> </span></small>
         <li class="brand-link">
           <!-- <a href="index3.html" > -->
           <img src="{{asset('backend/dashboard/image/siyamak.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -57,7 +58,7 @@
             <img src="{{asset('backend/dashboard/image/siyamak.png')}}" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block"> {{Auth::user()->name}} Dashboard</a>
+            <a href="#" class="d-block">  Dashboard</a>
           </div>
         </div>
         @include('backend.sidebar-menu')

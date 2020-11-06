@@ -33,14 +33,20 @@
           />
           <has-error :form="form" field="title"></has-error>
         </div>
-              <div class="form-group">
-                                    <label>Description</label>
-                                  <textarea name="description" id="" v-model="form.description"></textarea>
-                                    <has-error
-                                        :form="form"
-                                        field="description"
-                                    ></has-error>
-                                </div>
+        <div class="form-group">
+          <label>Description</label>
+          <ckeditor
+            name="description"
+            id
+            v-model="form.description"
+            placeholder="Enter description ..."
+            :class="{
+              'is-invalid': form.errors.has('title'),
+            }"
+          ></ckeditor>
+
+          <has-error :form="form" field="description"></has-error>
+        </div>
       </div>
       <div class="card-footer">
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -64,7 +70,7 @@ export default {
   },
 mounted() {
     axios
-      .get(`/api/service/edit/${this.$route.params.serviceid}`)
+      .get(`/service/edit/${this.$route.params.serviceid}`)
       .then((response) => {
         this.form.fill(response.data.service);
       });
@@ -73,7 +79,7 @@ mounted() {
   methods: {
     updateService() {
       this.form
-        .put(`/api/service/${this.$route.params.serviceid}`)
+        .put(`/service/${this.$route.params.serviceid}`)
         .then((response) => {
           this.$router.push("/index_service");
 

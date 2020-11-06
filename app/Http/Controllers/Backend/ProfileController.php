@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -68,8 +78,11 @@ class ProfileController extends Controller
             $profile->title = $request->title;
             $profile->description = $request->description;
             $profile->social_media_1 = $request->social_media_1;
+            $profile->link_1 = $request->link_1;
             $profile->social_media_2 = $request->social_media_2;
+            $profile->link_2 = $request->link_2;
             $profile->social_media_3 = $request->social_media_3;
+            $profile->link_3= $request->link_3;
             $profile->phone = $request->phone;
             $profile->email = $request->email;
             $profile->address = $request->address;
@@ -150,7 +163,9 @@ class ProfileController extends Controller
             $profile->title = $request->title;
             $profile->description = $request->description;
             $profile->social_media_1 = $request->social_media_1;
+            $profile->link_1 = $request->link_1;
             $profile->social_media_2 = $request->social_media_2;
+            $profile->link_2 = $request->link_2;
             $profile->social_media_3 = $request->social_media_3;
             $profile->phone = $request->phone;
             $profile->email = $request->email;
@@ -186,11 +201,7 @@ class ProfileController extends Controller
 
 
 
-// public function allTags(){
 
-// return ['tags' => Tag::all()];
-
-// }
 
 
 }

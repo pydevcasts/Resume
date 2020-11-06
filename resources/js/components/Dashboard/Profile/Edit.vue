@@ -80,7 +80,17 @@
           />
         </div>
         <div class="red">{{ errors.social_media_1 }}</div>
-
+        <div class="form-group">
+          <label>Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="link_1"
+            v-model="link_1"
+            placeholder="Enter link ..."
+          />
+        </div>
+        <div class="red">{{ errors.link_1 }}</div>
         <div class="form-group">
           <label>Social</label>
           <input
@@ -93,7 +103,17 @@
           />
         </div>
         <div class="red">{{ errors.social_media_2 }}</div>
-
+        <div class="form-group">
+          <label>Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="link_2"
+            v-model="link_2"
+            placeholder="Enter link ..."
+          />
+        </div>
+        <div class="red">{{ errors.link_2 }}</div>
         <div class="form-group">
           <label>Social</label>
           <input
@@ -106,7 +126,17 @@
           />
         </div>
         <div class="red">{{ errors.social_media_3 }}</div>
-
+        <div class="form-group">
+          <label>Link</label>
+          <input
+            type="text"
+            class="form-control"
+            name="link_3"
+            v-model="link_3"
+            placeholder="Enter link ..."
+          />
+        </div>
+        <div class="red">{{ errors.link_3 }}</div>
         <div class="form-group">
           <label class="typo__label">Tagging</label>
           <multiselect
@@ -167,6 +197,9 @@ export default {
         this.social_media_1 = response.data.profile.social_media_1;
         this.social_media_2 = response.data.profile.social_media_2;
         this.social_media_3 = response.data.profile.social_media_3;
+        this.link_1 = response.data.profile.link_1;
+        this.link_2 = response.data.profile.link_2;
+        this.link_3 = response.data.profile.link_3;
       });
   },
   mounted() {
@@ -197,6 +230,9 @@ export default {
       formData.append("social_media_1", this.social_media_1);
       formData.append("social_media_2", this.social_media_2);
       formData.append("social_media_3", this.social_media_3);
+      formData.append("link_1", this.link_1);
+      formData.append("link_2", this.link_2);
+      formData.append("link_3", this.link_3);
 
       for (let i = 0; i < this.value.length; i++) {
         formData.append("tags[]", this.value[i].code);

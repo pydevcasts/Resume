@@ -14,7 +14,7 @@ class CreateProfilesTable extends Migration
     public function up()
     {
         Schema::create('profiles', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('photo')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
@@ -22,8 +22,11 @@ class CreateProfilesTable extends Migration
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('social_media_1')->nullable();
+            $table->string('link_1')->nullable();
             $table->string('social_media_2')->nullable();
+            $table->string('link_2')->nullable();
             $table->string('social_media_3')->nullable();
+            $table->string('link_3')->nullable();
             $table->integer('user_id')->unsigned();
             $table->integer('tag_id')->unsigned();
             $table->timestamps();
