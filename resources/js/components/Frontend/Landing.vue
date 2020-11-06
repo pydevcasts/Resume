@@ -129,10 +129,18 @@ export default {
     return {};
   },
    mounted() {
+     
+      this.$store.dispatch("destroyToken");
+      Toast.fire({
+        icon: "success",
+        title: "You Log out In Successfully !",
+      });
+
     this.$store.dispatch("allProfileFromDatabase");
      this.$store.dispatch("allTagFromDatabase");
   },
   computed: {
+    
       getAllTag() {
       return this.$store.getters.getTagFormGetters;
     },
@@ -141,6 +149,7 @@ export default {
     },
   },
   methods: {
+    
     ourImage(img) {
       return `http://127.0.0.1:8000/storage/profile/${img}`;
     }

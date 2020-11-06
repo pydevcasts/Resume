@@ -20,7 +20,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("destroyToken");
-      console.log("this is a test for logout:",response)
+     
       this.$router.push((window.location.href = "/"));
       Toast.fire({
         icon: "success",

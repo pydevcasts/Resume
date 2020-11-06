@@ -27,7 +27,7 @@ const store = new Vuex.Store({
 
                         })
                         .then(response => {
-                            console.log("this is a test for logout:",response)
+                           
                             localStorage.removeItem('access_token')
                             const newLocal = 'destroyToken';
                             context.commit(newLocal)

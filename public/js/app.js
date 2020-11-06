@@ -4560,7 +4560,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     logout: function logout() {
       this.$store.dispatch("destroyToken");
-      console.log("this is a test for logout:", response);
       this.$router.push(window.location.href = "/");
       Toast.fire({
         icon: "success",
@@ -8259,6 +8258,11 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   mounted: function mounted() {
+    this.$store.dispatch("destroyToken");
+    Toast.fire({
+      icon: "success",
+      title: "You Log out In Successfully !"
+    });
     this.$store.dispatch("allProfileFromDatabase");
     this.$store.dispatch("allTagFromDatabase");
   },
@@ -97281,7 +97285,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
               'Authorization': "Bearer ".concat(token)
             }
           }).then(function (response) {
-            console.log("this is a test for logout:", response);
             localStorage.removeItem('access_token');
             var newLocal = 'destroyToken';
             context.commit(newLocal);
