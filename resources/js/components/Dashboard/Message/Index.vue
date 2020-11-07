@@ -42,7 +42,7 @@
                 >
                   <td class="sorting_1" tabindex="0">{{ index + 1 }}</td>
                   <td>{{ contact.name }}</td>
-                  <td>{{ contact.description }}</td>
+                  <td>{{ contact.description|sortlength(40, "....")|striphtml }}</td>
                   <td>
                     {{
                     contact.created_at

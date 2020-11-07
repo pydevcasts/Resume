@@ -68,8 +68,12 @@ const router = new VueRouter({
                 requiresAuth: true
             }
         },
-        { path: "/developer", component: Developer },
-        { path: "*", component: NotFound },
+        { path: "/developer", component: Developer,meta: {
+            requiresAuth: true
+        } },
+        { path: "*", component: NotFound ,meta: {
+            requiresAuth: true
+        }},
 
         // Profile
         {
@@ -123,7 +127,9 @@ const router = new VueRouter({
                 requiresAuth: true
             }
         },
-        { path: "/create_service", component: AddService },
+        { path: "/create_service", component: AddService,
+     
+     },
         { path: "/edit_service/:serviceid", component: EditService },
         // Contact
 

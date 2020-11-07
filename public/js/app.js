@@ -74785,7 +74785,19 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(contact.name))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(contact.description))]),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("striphtml")(
+                                  _vm._f("sortlength")(
+                                    contact.description,
+                                    40,
+                                    "...."
+                                  )
+                                )
+                              )
+                            )
+                          ]),
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
@@ -98054,10 +98066,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_27__["default"]({
     }
   }, {
     path: "/developer",
-    component: _components_Dashboard_Main_Developer_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    component: _components_Dashboard_Main_Developer_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    meta: {
+      requiresAuth: true
+    }
   }, {
     path: "*",
-    component: _components_Dashboard_Main_NotFound_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: _components_Dashboard_Main_NotFound_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    meta: {
+      requiresAuth: true
+    }
   }, // Profile
   {
     path: "/index_profile",
