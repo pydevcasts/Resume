@@ -40,6 +40,36 @@ import { multiselectMixin } from "vue-multiselect";
 import CKEditor from "ckeditor4-vue";
 Vue.use(CKEditor);
 
+
+
+// router auth permission or gate
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!store.getters.loggedIn) {
+            window.location.href = "/login"
+          
+        } else {
+            next()
+        }
+
+    } else if (to.matched.some(record => record.meta.requiresVisitor)) {
+        if (store.getters.loggedIn) {
+            window.location.href = "/home"
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
+})
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem("access_token") || null
+    window.axios.defaults.headers['Authorization'] = `Bearer ${ token }`
+    next();
+})
+
+
+
 const app = new Vue({
     el: "#app",
     router,

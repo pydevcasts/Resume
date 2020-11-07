@@ -4,7 +4,6 @@
       <h2>{{about.title}}</h2>
       <blockquote class="profile_quote">
         <p>"{{about.description|striphtml }}"</p>
-        <p>Siyamak Abasnezhad.</p>
         <span class="entypo-quote"></span>
       </blockquote>
     </div>

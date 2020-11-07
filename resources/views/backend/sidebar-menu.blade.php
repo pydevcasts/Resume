@@ -74,6 +74,14 @@
         </router-link>
       </li>
       <li class="nav-item">
+        <router-link to="/index_pdf" class="nav-link">
+          <i class="nav-icon fas fa-file-alt green"></i>
+          <p>
+            PDF
+          </p>
+        </router-link>
+      </li>
+      <li class="nav-item">
         <router-link to="/logout" class="nav-link">
           <i class="nav-icon fa fa-power-off red"></i>
           <p>

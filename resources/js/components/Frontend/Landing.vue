@@ -38,9 +38,7 @@
           </div>
           <div class="hello_content">
             <h2>{{profile.title}}</h2>
-            <p>
-              {{profile.description|striphtml}}
-            </p>
+            <p>{{profile.description|striphtml}}</p>
           </div>
           <div class="contact_details_content">
             <h2>Contact details</h2>
@@ -50,19 +48,18 @@
             <p>{{profile.email}}</p>
             <p class="purple">Adress:</p>
             <p>{{profile.address}}</p>
-          
           </div>
           <div class="get_social_content">
             <h2>Get social</h2>
             <ul class="social_icons horizontal_list">
               <li>
                 <a class="facebook" :href="profile.link_1">
-                  <span  :class="profile.social_media_1"></span>
+                  <span :class="profile.social_media_1"></span>
                 </a>
               </li>
               <li>
                 <a class="twitter" :href="profile.link_2">
-                  <span  :class="profile.social_media_2"></span>
+                  <span :class="profile.social_media_2"></span>
                 </a>
               </li>
               <li>
@@ -77,16 +74,24 @@
             <a href="#" class="send_message_button">
               <span class="cut1"></span>
               <span class="cut2"></span>
-              <span class="content">
-                Resume
-                <span class="entypo-download"></span>
-              </span>
+              <form v-on:submit.prevent="downloadFile">
+                <span class="content">
+                  <button
+                    type="submit"
+                    style="background:transparent;
+border:none;
+ color:white;"
+                  >Resume
+                  <span class="entypo-download"></span>
+                  </button>
+                </span>
+              </form>
             </a>
           </div>
           <div class="tagcloud">
             <h2>Skills</h2>
             <ul>
-              <li v-for= "tag in getAllTag" :key="tag.id">
+              <li v-for="tag in getAllTag" :key="tag.id">
                 <a href="#">
                   <span>{{tag.tag_name}}</span>
                 </a>
@@ -97,9 +102,9 @@
       </aside>
       <section id="content_container">
         <About></About>
-       <Services></Services>
-      <Works></Works>
-      <Contact></Contact>
+        <Services></Services>
+        <Works></Works>
+        <Contact></Contact>
       </section>
       <!-- FOOTER -->
       <div id="footer">
@@ -120,6 +125,7 @@ import Contact from "./Contact.vue";
 export default {
   name: "Landing",
   components: {
+    isUnderlined: true,
     About,
     Services,
     Works,
@@ -128,20 +134,18 @@ export default {
   data() {
     return {};
   },
-   mounted() {
-     
-      this.$store.dispatch("destroyToken");
-      Toast.fire({
-        icon: "success",
-        title: "You Log out In Successfully !",
-      });
+  mounted() {
+    this.$store.dispatch("destroyToken");
+    Toast.fire({
+      icon: "success",
+      title: "You Welcome !",
+    });
 
     this.$store.dispatch("allProfileFromDatabase");
-     this.$store.dispatch("allTagFromDatabase");
+    this.$store.dispatch("allTagFromDatabase");
   },
   computed: {
-    
-      getAllTag() {
+    getAllTag() {
       return this.$store.getters.getTagFormGetters;
     },
     getAllprofile() {
@@ -149,13 +153,25 @@ export default {
     },
   },
   methods: {
-    
+    downloadFile(file) {
+      axios
+        .get("/download/upload-folder/" + "resume.pdf", {
+          responseType: "arraybuffer",
+        })
+        .then((response) => {
+          let blob = new Blob([response.data], { type: "application/*" });
+          let link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = "resume.pdf";
+          link.click();
+        });
+    },
     ourImage(img) {
       return `http://127.0.0.1:8000/storage/profile/${img}`;
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style scoped>
+<style>
 </style>

@@ -54,9 +54,9 @@ class ProfileController extends Controller
     {
         $this->validate($request, [
             'photo'=>'required',
-            'tags'=>'required|array|max:10',
-            'tags.*'=>'required',
             'title'=>'required',
+               // 'tags'=>'required|array|max:10',
+            // 'tags.*'=>'required',
             'description'=>'required',
             'social_media_1'=>'required',
             'social_media_2'=>'required',
@@ -85,6 +85,7 @@ class ProfileController extends Controller
             $profile->link_3= $request->link_3;
             $profile->phone = $request->phone;
             $profile->email = $request->email;
+            $profile->user_id = null;
             $profile->address = $request->address;
             
             $profile->save();
@@ -139,8 +140,8 @@ class ProfileController extends Controller
       
         $this->validate($request, [
             'photo'=>'required',
-            'tags'=>'required|array|max:10',
-            'tags.*'=>'required',
+            // 'tags'=>'required|array|max:10',
+            // 'tags.*'=>'required',
             'title'=>'required',
             'description'=>'required',
             'social_media_1'=>'required',
@@ -169,6 +170,7 @@ class ProfileController extends Controller
             $profile->social_media_3 = $request->social_media_3;
             $profile->phone = $request->phone;
             $profile->email = $request->email;
+            $profile->user_id = null;
             $profile->address = $request->address;
             
             $profile->save();

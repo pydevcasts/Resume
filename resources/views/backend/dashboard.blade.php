@@ -7,7 +7,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <title>Dashboard | Siyamak</title>
+  <title>Dashboard |Siyamak</title>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -36,7 +36,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
-        <small class="navbar-text">welcome<span> </span></small>
+        <small class="navbar-text">welcome<span>Siyamak </span></small>
         <li class="brand-link">
           <!-- <a href="index3.html" > -->
           <img src="{{asset('backend/dashboard/image/siyamak.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

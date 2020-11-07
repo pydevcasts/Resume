@@ -11,6 +11,7 @@ const store = new Vuex.Store({
         gallery: [],
         service: [],
         contact: [],
+        pdf:[],
         token: localStorage.getItem("access_token") || null
     },
     actions: {
@@ -24,10 +25,8 @@ const store = new Vuex.Store({
                                 'Content-Type': 'application/json',
                                 'Authorization': `Bearer ${ token }`
                             },
-
                         })
                         .then(response => {
-                           
                             localStorage.removeItem('access_token')
                             const newLocal = 'destroyToken';
                             context.commit(newLocal)
@@ -62,6 +61,17 @@ const store = new Vuex.Store({
             });
         },
 
+        allPDFFromDatabase(context) {
+            axios
+                .get("/files")
+                .then(response => {
+                    console.log(response);
+                    context.commit("upload", response.data.upload);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
         allContactFromDatabase(context) {
             axios
                 .get("/contact")
@@ -106,7 +116,7 @@ const store = new Vuex.Store({
         },
         allTagFromDatabase(context) {
             axios
-                .get("tag")
+                .get("/tag")
                 .then(response => {
                     console.log(response.data.tags);
                     context.commit("tags", response.data.tags); //tags will be run from mutation
@@ -117,7 +127,7 @@ const store = new Vuex.Store({
         },
         allProfileFromDatabase(context) {
             axios
-                .get("profile")
+                .get("/profile")
                 .then(response => {
                     console.log(response.data.profiles);
                     context.commit("profiles", response.data.profiles); //categories will be run from mutation
@@ -133,6 +143,9 @@ const store = new Vuex.Store({
         },
         retrieveToken(state, token) {
             return (state.token = token);
+        },
+        upload(state, data) {
+            return (state.pdf = data);
         },
         contacts(state, data) {
             return (state.contact = data);
@@ -157,6 +170,9 @@ const store = new Vuex.Store({
     getters: {
         loggedIn(state) {
             return state.token;
+        },
+        getPdfFormGetters(state) {
+            return state.pdf;
         },
         getContactFromGetters(state) {
             return state.contact;

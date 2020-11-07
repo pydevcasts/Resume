@@ -342,7 +342,7 @@ export default {
           this.$router.push("/index_profile");
           Toast.fire({
             icon: "success",
-            title: "Gallery is createde successfully",
+            title: "Profile is createde successfully",
           });
         })
         .catch((error) => {

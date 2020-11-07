@@ -57,3 +57,8 @@ Route::middleware(['api'])->group(function ($router) {
     Route::post('refresh', 'Frontend\AuthController@refresh');
     Route::get('me', 'Frontend\AuthController@me');
 });
+// PDF
+Route::get('files', 'Backend\PDFController@index');
+Route::post('upload', 'Backend\PDFController@uploadFile');
+Route::get('delete/upload-folder/{file}', 'Backend\PDFController@deleteFile');
+Route::get('download/upload-folder/{file}', 'Backend\PDFController@downloadFile');
