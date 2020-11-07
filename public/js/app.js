@@ -8559,7 +8559,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.dispatch("destroyToken");
     Toast.fire({
       icon: "success",
-      title: "You Welcome !"
+      title: "Hello Welcome !"
     });
     this.$store.dispatch("allProfileFromDatabase");
     this.$store.dispatch("allTagFromDatabase");
@@ -71678,7 +71678,15 @@ var render = function() {
                           _c("td", [
                             _vm._v(
                               "\n                                     " +
-                                _vm._s(_vm._f("striphtml")(about.description)) +
+                                _vm._s(
+                                  _vm._f("striphtml")(
+                                    _vm._f("sortlength")(
+                                      about.description,
+                                      40,
+                                      "...."
+                                    )
+                                  )
+                                ) +
                                 "\n                                 "
                             )
                           ]),
@@ -78385,7 +78393,8 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("95%\n      ")
         ]),
         _vm._v(" "),
         _c("li", { attrs: { "data-percent": "90" } }, [
@@ -78393,7 +78402,8 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("90%\n      ")
         ]),
         _vm._v(" "),
         _c("li", { attrs: { "data-percent": "60" } }, [
@@ -78401,63 +78411,71 @@ var staticRenderFns = [
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("60%\n      ")
         ]),
         _vm._v(" "),
-        _c("li", { attrs: { "data-percent": "50" } }, [
+        _c("li", { attrs: { "data-percent": "60" } }, [
           _c("span", [_vm._v("jQuery")]),
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("60%\n      ")
         ]),
         _vm._v(" "),
-        _c("li", { attrs: { "data-percent": "50" } }, [
+        _c("li", { attrs: { "data-percent": "60" } }, [
           _c("span", [_vm._v("Vue")]),
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("60%\n      ")
         ]),
         _vm._v(" "),
-        _c("li", { attrs: { "data-percent": "80" } }, [
+        _c("li", { attrs: { "data-percent": "70" } }, [
           _c("span", [_vm._v("Python")]),
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("70%\n      ")
         ]),
         _vm._v(" "),
-        _c("li", { attrs: { "data-percent": "70" } }, [
+        _c("li", { attrs: { "data-percent": "73" } }, [
           _c("span", [_vm._v("Django")]),
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("73%\n      ")
         ]),
         _vm._v(" "),
-        _c("li", { attrs: { "data-percent": "70" } }, [
+        _c("li", { attrs: { "data-percent": "75" } }, [
           _c("span", [_vm._v("Laravel")]),
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("75%\n      ")
         ]),
         _vm._v(" "),
-        _c("li", { attrs: { "data-percent": "55" } }, [
+        _c("li", { attrs: { "data-percent": "79" } }, [
           _c("span", [_vm._v("PHP")]),
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("79%\n      ")
         ]),
         _vm._v(" "),
-        _c("li", { attrs: { "data-percent": "40" } }, [
+        _c("li", { attrs: { "data-percent": "77" } }, [
           _c("span", [_vm._v("MySQL")]),
           _vm._v(" "),
           _c("div", { staticClass: "skills-bar" }, [
             _c("div", { staticClass: "bar" })
-          ])
+          ]),
+          _vm._v("77%\n      ")
         ])
       ])
     ])

@@ -21,61 +21,61 @@
           <span>HTML5</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>95%
         </li>
         <li data-percent="90">
           <span>CSS3 & SCSS</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>90%
         </li>
         <li data-percent="60">
           <span>JavaScript</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>60%
         </li>
-        <li data-percent="50">
+        <li data-percent="60">
           <span>jQuery</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>60%
         </li>
-        <li data-percent="50">
+        <li data-percent="60">
           <span>Vue</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>60%
         </li>
-        <li data-percent="80">
+        <li data-percent="70">
           <span>Python</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>70%
         </li>
-        <li data-percent="70">
+        <li data-percent="73">
           <span>Django</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>73%
         </li>
-        <li data-percent="70">
+        <li data-percent="75">
           <span>Laravel</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>75%
         </li>
-        <li data-percent="55">
+        <li data-percent="79">
           <span>PHP</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>79%
         </li>
-        <li data-percent="40">
+        <li data-percent="77">
           <span>MySQL</span>
           <div class="skills-bar">
             <div class="bar"></div>
-          </div>
+          </div>77%
         </li>
       </ul>
     </div>

@@ -13,8 +13,6 @@
 <body>
     <div class="container-login">
         <div class="wrapper" id="app">
-
-
             <router-view></router-view>
         </div>
     </div>

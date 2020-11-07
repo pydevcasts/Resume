@@ -58,7 +58,7 @@
                                                             {{ about.title }}
                                                         </td>
                                                         <td>
-                                                            {{ about.description|striphtml }}
+                                                            {{ about.description|sortlength(40, "....")|striphtml }}
                                                         </td>
                                                         <td>
                                                             {{

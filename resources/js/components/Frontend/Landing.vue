@@ -138,7 +138,7 @@ export default {
     this.$store.dispatch("destroyToken");
     Toast.fire({
       icon: "success",
-      title: "You Welcome !",
+      title: "Hello Welcome !",
     });
 
     this.$store.dispatch("allProfileFromDatabase");

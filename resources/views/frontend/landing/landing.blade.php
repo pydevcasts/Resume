@@ -20,10 +20,10 @@
         <nav class="top-nav">
             <ul class="nav-list">
                 <li>
-                    <a href="/" class="nav-link">Home</a>
+                    <a href="#home"  class="{{ Request::is('/') ? 'active' : '' }} nav-link">Home</a>
                 </li>
                 <li>
-                    <a href="#about" class="nav-link" >About</a>
+                    <a href="#about" class="{{ Request::is('/about') ? 'active' : '' }} nav-link" >About</a>
                 </li>
                 <li>
                     <a href="#service" class="nav-link">Services</a>
