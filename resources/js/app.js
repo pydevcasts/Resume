@@ -4,7 +4,7 @@ import router from "./routes";
 
 // Axios
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8000/api";
+axios.defaults.baseURL = "/api";
 
 // vuex
 import store from "./store/index";

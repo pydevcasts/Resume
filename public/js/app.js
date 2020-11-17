@@ -5314,7 +5314,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ourImage: function ourImage(img) {
-      return "http://127.0.0.1:8000/storage/gallery/".concat(img);
+      return "https://s-abasnezhad.ir/storage/gallery/".concat(img);
     },
     deleteGallery: function deleteGallery(id) {
       var _this = this;
@@ -6877,7 +6877,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ourImage: function ourImage(img) {
-      return "http://127.0.0.1:8000/storage/profile/".concat(img);
+      return "https://s-abasnezhad.ir/storage/profile/".concat(img);
     },
     emitProfile: function emitProfile(id) {
       var _this = this;
@@ -8555,6 +8555,22 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
+  beforeCreate: function beforeCreate() {
+    var x = document.getElementsByTagName("a");
+
+    for (var i = 0; i < x.length; i++) {
+      console.log("test:", x[i]);
+      x[i].addEventListener("click", function () {
+        var current = document.getElementsByTagName("active");
+
+        if (current.length > 0) {
+          current[0].tagName = document.tagName.replace(" active", "");
+        }
+
+        this.tagName += " active";
+      });
+    }
+  },
   mounted: function mounted() {
     this.$store.dispatch("destroyToken");
     Toast.fire({
@@ -8587,7 +8603,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     ourImage: function ourImage(img) {
-      return "http://127.0.0.1:8000/storage/profile/".concat(img);
+      return "https://s-abasnezhad.ir/storage/profile/".concat(img);
     }
   }
 });
@@ -8703,7 +8719,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ourImage: function ourImage(img) {
-      return "http://127.0.0.1:8000/storage/gallery/".concat(img);
+      return "https://s-abasnezhad.ir/storage/gallery/".concat(img);
     }
   }
 });
@@ -78880,23 +78896,34 @@ var staticRenderFns = [
           _c("li", [
             _c(
               "a",
-              { staticClass: "no_border purple", attrs: { href: "#home" } },
+              {
+                staticClass: "no_border purple",
+                attrs: { id: "btn", href: "/" }
+              },
               [_vm._v("Profile")]
             )
           ]),
           _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#about" } }, [_vm._v("About")])]),
-          _vm._v(" "),
           _c("li", [
-            _c("a", { attrs: { href: "#service" } }, [_vm._v("Services")])
+            _c("a", { attrs: { href: "#about", id: "btn" } }, [_vm._v("About")])
           ]),
           _vm._v(" "),
           _c("li", [
-            _c("a", { attrs: { href: "#gallery" } }, [_vm._v("Experience")])
+            _c("a", { attrs: { href: "#service", id: "btn" } }, [
+              _vm._v("Services")
+            ])
           ]),
           _vm._v(" "),
           _c("li", [
-            _c("a", { attrs: { href: "#contact" } }, [_vm._v("Contact")])
+            _c("a", { attrs: { href: "#gallery", id: "btn" } }, [
+              _vm._v("Experience")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "#contact", id: "btn" } }, [
+              _vm._v("Contact")
+            ])
           ])
         ])
       ])
@@ -95655,7 +95682,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  // Axios
 
 
-axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "http://localhost:8000/api"; // vuex
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "/api"; // vuex
 
  // vform
 
@@ -98241,7 +98268,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
     },
     retrieveToken: function retrieveToken(context, credentials) {
       return new Promise(function (resolve, reject) {
-        axios.post("/login/", {
+        axios.post("login", {
           email: credentials.email,
           password: credentials.password
         }).then(function (response) {

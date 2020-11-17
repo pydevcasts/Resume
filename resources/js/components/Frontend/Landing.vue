@@ -12,19 +12,19 @@
         <div class="header_menu_container">
           <ul class="header_menu horizontal_list">
             <li>
-              <a class="no_border purple" href="#home">Profile</a>
+              <a class="no_border purple" id="btn" href="/">Profile</a>
             </li>
             <li>
-              <a href="#about">About</a>
+              <a href="#about" id ="btn">About</a>
             </li>
             <li>
-              <a href="#service">Services</a>
+              <a href="#service" id ="btn">Services</a>
             </li>
             <li>
-              <a href="#gallery">Experience</a>
+              <a href="#gallery" id ="btn">Experience</a>
             </li>
             <li>
-              <a href="#contact">Contact</a>
+              <a href="#contact" id ="btn">Contact</a>
             </li>
           </ul>
         </div>
@@ -118,6 +118,7 @@ border:none;
 </template>
 
 <script>
+
 import About from "./About.vue";
 import Services from "./Services.vue";
 import Works from "./Works.vue";
@@ -132,7 +133,22 @@ export default {
     Contact,
   },
   data() {
-    return {};
+    return { 
+    };
+  },
+  beforeCreate(){
+      
+       var x = document.getElementsByTagName("a");
+for (var i = 0; i < x.length; i++) {
+  console.log("test:", x[i]);
+  x[i].addEventListener("click", function(){
+    var current = document.getElementsByTagName("active");
+    if(current.length > 0){
+      current[0].tagName = document.tagName.replace(" active", "");
+    }
+    this.tagName+=" active";
+  })
+}
   },
   mounted() {
     this.$store.dispatch("destroyToken");
@@ -153,6 +169,7 @@ export default {
     },
   },
   methods: {
+    
     downloadFile(file) {
       axios
         .get("/download/upload-folder/" + "resume.pdf", {
@@ -167,7 +184,7 @@ export default {
         });
     },
     ourImage(img) {
-      return `http://127.0.0.1:8000/storage/profile/${img}`;
+      return `https://s-abasnezhad.ir/storage/profile/${img}`;
     },
   },
 };

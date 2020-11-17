@@ -43,7 +43,7 @@ const store = new Vuex.Store({
         retrieveToken(context, credentials) {
             return new Promise((resolve, reject) => {
                 axios
-                    .post("/login/", {
+                    .post("login", {
                         email: credentials.email,
                         password: credentials.password
                     })

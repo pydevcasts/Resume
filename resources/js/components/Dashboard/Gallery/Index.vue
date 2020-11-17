@@ -183,7 +183,7 @@ export default {
   },
   methods: {
     ourImage(img) {
-      return `http://127.0.0.1:8000/storage/gallery/${img}`;
+      return `https://s-abasnezhad.ir/storage/gallery/${img}`;
     },
     deleteGallery(id) {
       const swalWithBootstrapButtons = Swal.mixin({
