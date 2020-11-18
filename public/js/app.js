@@ -8603,7 +8603,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     ourImage: function ourImage(img) {
-      return "https://s-abasnezhad.ir/storage/profile/".concat(img);
+      return "storage/profile/".concat(img);
     }
   }
 });
@@ -8719,7 +8719,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     ourImage: function ourImage(img) {
-      return "https://s-abasnezhad.ir/storage/gallery/".concat(img);
+      return "/storage/gallery/".concat(img);
     }
   }
 });
@@ -95682,7 +95682,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  // Axios
 
 
-axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "/api"; // vuex
+axios__WEBPACK_IMPORTED_MODULE_1___default.a.defaults.baseURL = "api/"; // vuex
 
  // vform
 

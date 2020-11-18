@@ -184,7 +184,7 @@ for (var i = 0; i < x.length; i++) {
         });
     },
     ourImage(img) {
-      return `https://s-abasnezhad.ir/storage/profile/${img}`;
+      return `storage/profile/${img}`;
     },
   },
 };

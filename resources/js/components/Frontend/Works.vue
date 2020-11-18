@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     ourImage(img) {
-      return `https://s-abasnezhad.ir/storage/gallery/${img}`;
+      return `/storage/gallery/${img}`;
     },
   },
 };
