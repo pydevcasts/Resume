@@ -89,10 +89,10 @@ export default {
   methods: {
     addContact() {
       this.form
-        .post("contact")
+        .post("/contact")
         .then((response) => {
           console.log("ok");
-          Toast.fire({
+            Toast.fire({
             icon: "success",
             title: "Email sent successfully .",
           });

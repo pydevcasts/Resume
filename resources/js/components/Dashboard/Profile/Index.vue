@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     ourImage(img) {
-      return `https://s-abasnezhad.ir/storage/profile/${img}`;
+      return `/storage/profile/${img}`;
     },
     emitProfile(id) {
       const swalWithBootstrapButtons = Swal.mixin({

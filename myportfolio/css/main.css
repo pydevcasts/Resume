@@ -95,14 +95,14 @@ h6 {
 }
 
 
-
 .top-nav {
-  width: 100%;
+  width: 480px;
   height: 100vh;
   position: fixed;
   top: -100vh;
   z-index: 50;
-  background-color: #403f44;
+  background-color: #000000;
+  opacity: 0.7;
   border-bottom-left-radius: 100%;
   border-bottom-right-radius: 100%;
   transition: all 650ms cubic-bezier(1, 0, 0, 1);
@@ -113,8 +113,8 @@ h6 {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   overflow: hidden;
 }
 
@@ -141,6 +141,7 @@ h6 {
   top: 0;
   border-radius: initial;
 }
+
 
 /*End header*/
 #main_container {
@@ -178,12 +179,12 @@ h6 {
 .logotype_occupation {
   text-transform: uppercase;
   font-size: 18px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .header_menu_container {
   height: 120px;
-  width: 800px;
+  max-width: 800px;
   float: left;
   margin-top: 5px;
 }
@@ -922,24 +923,82 @@ input[class="email"] {
 /*Start media queries*/
 @media screen and (min-width: 320px) and (max-width: 480px) {
   body {
-    width: 100vw;
+    /* max-width: 480px; */
+    background: url("../images/dark_wall.webp");
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
   }
 
+  .top-nav {
+    width: 480px;
+    height: 100vh;
+    position: fixed;
+    top: -100vh;
+    z-index: 50;
+    background-color: #000000;
+    opacity: 0.7;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
+    transition: all 650ms cubic-bezier(1, 0, 0, 1);
+  }
+  
+  .nav-list {
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    overflow: hidden;
+  }
+  
+  .nav-list li {
+    margin: 0 1rem;
+  }
+  
+  .nav-link {
+    font-family: "Dancing Script", cursive;
+    font-size: 2rem;
+    padding: 1rem;
+    font-style: italic;
+    background-color: linear-gradient(to top, #48da9b, #837c9a);
+  }
+  
+  .nav-link:hover,
+  .nav-link:focus {
+    background: linear-gradient(to top, #48da9b, #837c9a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .top-nav.open {
+    top: 0;
+    border-radius: initial;
+  }
+  
+
+  #main_container {
+    max-width: 450px;
+    position: relative;
+    margin: auto auto;
+  }
+  
+
   #header {
-    width: 350px;
+    max-width: 300px;
     margin-left: 30px;
     margin-right: 70px;
   }
 
   .logotype_name {
     font-size: 20px;
-    margin-left: 80px;
+    margin-left: 30px;
   }
   .menu-toggler {
     position: fixed;
-    top: 4rem;
-    right: 3rem;
+    top: 6rem;
+    margin-right: 120px;
     width: 3rem;
     height: 2rem;
     display: flex;
@@ -1013,7 +1072,7 @@ input[class="email"] {
 
   .logotype_occupation {
     float: left;
-    margin-left: 80px;
+    margin-left: 30px;
   }
 
   .header_menu {
@@ -1199,10 +1258,18 @@ input[class="email"] {
 
 @media screen and (min-width: 480px) and (max-width: 768px) {
   body {
-    width: 100vw;
+    max-width: 768px;
+    background: url("../images/dark_wall.webp");
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
   }
-
+  #main_container {
+    width: 768px;
+    position: relative;
+    margin: auto auto;
+  }
+  
   .contact_details_content p {
     margin-top: 10px;
     margin-left: 50px;
@@ -1233,7 +1300,7 @@ input[class="email"] {
   }
 
   .logotype_name {
-    margin-left: 80px;
+    /* margin-left: 10px; */
   }
 
   .nav-list {
@@ -1268,7 +1335,7 @@ input[class="email"] {
 
   .logotype_occupation {
     float: left;
-    margin-left: 80px;
+    /* margin-left: 30px; */
   }
 
   .header_menu {

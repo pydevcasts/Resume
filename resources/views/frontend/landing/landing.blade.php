@@ -20,7 +20,7 @@
         <nav class="top-nav">
             <ul class="nav-list">
                 <li>
-                    <a href="#home"  class="{{ Request::is('/') ? 'active' : '' }} nav-link">Home</a>
+                    <a href="/"  class="{{ Request::is('/') ? 'active' : '' }} nav-link">Home</a>
                 </li>
                 <li>
                     <a href="#about" class="{{ Request::is('/about') ? 'active' : '' }} nav-link" >About</a>
@@ -78,9 +78,7 @@
   });
   
   </script>
-  <script>
 
-  </script>
 </body>
 
 </html>
